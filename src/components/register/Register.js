@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-import { initialValues, RegisterForm } from "./registerForm";
+import { initialValues, RegisterForm } from "./RegisterForm";
 import { registerSchema } from "./registerSchema";
 import toast from "../common/Toast";
 import { Auth } from "../../services/auth";
