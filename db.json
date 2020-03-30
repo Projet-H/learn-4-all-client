@@ -1,5 +1,19 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "class": [
+    { "id": 1, "name": "3eme", "slug": "troisieme" },
+    { "id": 2, "name": "BTS - electronique", "slug": "troisieme" },
+    { "id": 3, "name": "terminale", "slug": "troisieme" },
+    { "id": 4, "name": "lorem", "slug": "troisieme" },
+    { "id": 5, "name": "BTS - electronique", "slug": "troisieme" },
+    { "id": 6, "name": "terminale", "slug": "troisieme" },
+    { "id": 7, "name": "3eme", "slug": "troisieme" },
+    { "id": 8, "name": "BTS - electronique", "slug": "troisieme" },
+    { "id": 9, "name": "terminale", "slug": "troisieme" },
+    { "id": 10, "name": "3eme", "slug": "troisieme" },
+    { "id": 11, "name": "BTS - electronique", "slug": "troisieme" },
+    { "id": 12, "name": "terminale", "slug": "troisieme" },
+    { "id": 13, "name": "3eme", "slug": "troisieme" },
+    { "id": 14, "name": "BTS - electronique", "slug": "troisieme" },
+    { "id": 15, "name": "terminale", "slug": "troisieme" }
+  ]
 }
