@@ -7,13 +7,14 @@
     { "id": 5, "name": "BTS - electronique", "slug": "troisieme" },
     { "id": 6, "name": "terminale", "slug": "troisieme" },
     { "id": 7, "name": "3eme", "slug": "troisieme" },
-    { "id": 8, "name": "BTS - electronique", "slug": "troisieme" },
-    { "id": 9, "name": "terminale", "slug": "troisieme" },
-    { "id": 10, "name": "3eme", "slug": "troisieme" },
-    { "id": 11, "name": "BTS - electronique", "slug": "troisieme" },
-    { "id": 12, "name": "terminale", "slug": "troisieme" },
-    { "id": 13, "name": "3eme", "slug": "troisieme" },
-    { "id": 14, "name": "BTS - electronique", "slug": "troisieme" },
-    { "id": 15, "name": "terminale", "slug": "troisieme" }
+    { "id": 8, "name": "BTS - electronique", "slug": "troisieme" }
+  ],
+  "subject": [
+    { "id": 1, "name": "Mathématiques", "slug": "maths" },
+    { "id": 2, "name": "Français", "slug": "francais" },
+    { "id": 3, "name": "Dessin", "slug": "dessin" },
+    { "id": 4, "name": "Sport", "slug": "sport" },
+    { "id": 5, "name": "Electronique", "slug": "electronic" },
+    { "id": 6, "name": "jesaispas", "slug": "jesaispas" }
   ]
 }

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 
-import { Class } from "../../services/class";
+import { Subject } from "../../services/subject";
 import { isEmpty } from "../../helpers/utility";
 
-const ELEMENT_PER_PAGE = 8;
+const ELEMENT_PER_PAGE = 5;
 
-export const ClassIndex = () => {
+export const SubjectIndex = () => {
   const [data, setData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const { pathname } = useLocation();
+  const firstpoint = pathname.split("/")[1];
   const { push } = useHistory();
 
   const changeCurrentPage = numPage => {
@@ -19,12 +21,13 @@ export const ClassIndex = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await Class.list();
+      console.log(`Passer le slug de la classe : ${firstpoint}`);
+      const response = await Subject.list();
       const dataJson = await response.json();
       return setData(dataJson);
     };
     fetchData();
-  }, []);
+  }, [firstpoint]);
 
   return !isEmpty(data) ? (
     <>
@@ -35,7 +38,7 @@ export const ClassIndex = () => {
             currentPage * ELEMENT_PER_PAGE - ELEMENT_PER_PAGE + ELEMENT_PER_PAGE
           )
           .map((value, index) => (
-            <div key={index} onClick={() => push(`${value.slug}/subject`)}>
+            <div key={index} onClick={() => push(`${value.slug}/issues`)}>
               {value.name}
             </div>
           ))}
