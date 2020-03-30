@@ -8,7 +8,7 @@ import {
 
 import { NotFound } from "./components/NotFound";
 import { Register } from "./components/register/Register";
-import { Login } from "./components/Login";
+import { Login } from "./components/login/Login";
 import { Home } from "./components/Home";
 import { NOTFOUND, LOGIN, REGISTER, HOME } from "./helpers/route-constant";
 import { withTitleAnimation } from "./helpers/withTitle";
