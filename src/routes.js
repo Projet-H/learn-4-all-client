@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { NotFound } from "./components/NotFound";
-import { Register } from "./components/Register";
+import { Register } from "./components/register/Register";
 import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { NOTFOUND, LOGIN, REGISTER, HOME } from "./helpers/route-constant";
