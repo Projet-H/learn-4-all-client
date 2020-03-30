@@ -8,7 +8,7 @@ import { initialValues, LoginForm } from "./LoginForm";
 import { loginSchema } from "./loginSchema";
 import { SessionContext, setSessionCookie } from "../../context/session";
 import { Auth } from "../../services/auth";
-import { HOME } from "../../helpers/route-constant";
+import { CLASS } from "../../helpers/route-constant";
 
 export const Login = () => {
   const { push } = useHistory();
@@ -27,7 +27,7 @@ export const Login = () => {
       setSessionCookie(jsonData.token);
       setSession({ ...session, auth: true, token: jsonData.token });
 
-      return push(HOME);
+      return push(CLASS);
     } catch (err) {
       setErrors({ [err.errors.property]: err.errors.message });
     } finally {
