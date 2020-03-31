@@ -13,14 +13,19 @@ import { Login } from "./components/login/Login";
 import { ClassIndex as Class } from "./components/class/";
 import { SubjectIndex as Subject } from "./components/subject/";
 import { IssuesIndex as Issues } from "./components/issues/";
+import { Profil } from "./components/Profil";
 import {
   NOTFOUND,
   LOGIN,
   REGISTER,
   CLASS,
   SUBJECT,
-  ISSUES
+  ISSUES,
+  PROFIL
 } from "./helpers/route-constant";
+
+
+
 import { withTitleAnimation } from "./helpers/withTitle";
 
 export const Routes = () => {
@@ -52,6 +57,10 @@ export const Routes = () => {
     component: NotFound,
     title: "404 - Not Found"
   });
+  const ProfilComponent = withTitleAnimation({
+    component: Profil,
+    title: "Profil"
+  })
 
   return (
     <Router>
@@ -62,6 +71,7 @@ export const Routes = () => {
         <Route exact path={ISSUES} component={IssuesComponent}></Route>
         <Route exact path={LOGIN} component={LoginComponent}></Route>
         <Route exact path={REGISTER} component={RegisterComponent}></Route>
+        <Route exact path={PROFIL} component={ProfilComponent}></Route>
         <Route exact path={NOTFOUND} component={NotFoundComponent} />
         <Redirect to={NOTFOUND} />
       </Switch>
