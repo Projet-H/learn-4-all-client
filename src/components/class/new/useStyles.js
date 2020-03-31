@@ -4,7 +4,8 @@ export const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    height: "100vh"
   },
   class: {
     position: "relative",
@@ -26,27 +27,11 @@ export const useStyles = makeStyles({
     fontWeight: 500,
     lineHeight: "13px",
     letterSpacing: "0.33px",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    marginTop: 0
   },
-  addButton: {
-    position: "absolute",
-    top: "15px",
-    right: "15px"
-  },
-  list: {
-    margin: "35px 0 35px 0"
-  },
-  pagination: {
-    display: "flex",
-    justifyContent: "center"
-  },
-  blocNoData: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: 125
-  },
-  noData: {
-    width: "100%",
-    maxWidth: 600
+  button: {
+    height: 55,
+    marginTop: 10
   }
 });
