@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const Card = ({ value }) => {
+export const Card = ({ value, mainSubtitle, route }) => {
   const classes = useStyles();
   const { push } = useHistory();
 
@@ -51,18 +51,14 @@ export const Card = ({ value }) => {
       </Grid>
       <Grid item xs={6} sm={3} className={classes.element}>
         <div className={classes.title}>54</div>
-        <div className={classes.subtitle}>Nombre de matières</div>
+        <div className={classes.subtitle}>{mainSubtitle}</div>
       </Grid>
       <Grid item xs={6} sm={3} className={classes.element}>
         <div className={classes.title}>{value.createdAt}</div>
         <div className={classes.subtitle}>Date de création</div>
       </Grid>
       <Grid item xs={6} sm={2} className={classes.element}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => push(`${value.slug}/subject`)}
-        >
+        <Button variant="contained" color="primary" onClick={() => push(route)}>
           Voir
         </Button>
       </Grid>

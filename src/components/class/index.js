@@ -7,7 +7,7 @@ import { isEmpty } from "../../helpers/utility";
 import { Card } from "../common/Card";
 import { useStyles } from "./useStyles";
 
-const ELEMENT_PER_PAGE = 8;
+const ELEMENT_PER_PAGE = 7;
 
 export const ClassIndex = () => {
   const classes = useStyles();
@@ -43,7 +43,12 @@ export const ClassIndex = () => {
                 ELEMENT_PER_PAGE
             )
             .map((value, index) => (
-              <Card key={index} value={value} />
+              <Card
+                key={index}
+                value={value}
+                mainSubtitle="Nombre de matières"
+                route={`${value.slug}/subject`}
+              />
             ))}
         </div>
         <Pagination
