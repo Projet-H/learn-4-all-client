@@ -11,9 +11,12 @@ import { NotFound } from "./components/NotFound";
 import { Register } from "./components/register/Register";
 import { Login } from "./components/login/Login";
 import { ClassIndex as Class } from "./components/class/";
+import { ClassNew } from "./components/class/new/Class";
 import { SubjectIndex as Subject } from "./components/subject/";
+import { SubjectNew } from "./components/subject/new/Subject";
+
 import { IssuesIndex as Issues } from "./components/issues/";
-import { Profil } from "./components/Profil";
+import { Profil } from "./components/profil/Profil";
 import {
   NOTFOUND,
   LOGIN,
@@ -21,10 +24,10 @@ import {
   CLASS,
   SUBJECT,
   ISSUES,
+  CLASSNEW,
+  SUBJECTNEW,
   PROFIL
 } from "./helpers/route-constant";
-
-
 
 import { withTitleAnimation } from "./helpers/withTitle";
 
@@ -37,9 +40,17 @@ export const Routes = () => {
     component: Class,
     title: "Class"
   });
+  const ClassNewComponent = withTitleAnimation({
+    component: ClassNew,
+    title: "ClassNew"
+  });
   const SubjectComponent = withTitleAnimation({
     component: Subject,
     title: "Subject"
+  });
+  const SubjectNewComponent = withTitleAnimation({
+    component: SubjectNew,
+    title: "SubjectNew"
   });
   const IssuesComponent = withTitleAnimation({
     component: Issues,
@@ -60,14 +71,16 @@ export const Routes = () => {
   const ProfilComponent = withTitleAnimation({
     component: Profil,
     title: "Profil"
-  })
+  });
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={HomeComponent}></Route>
+        <Route exact path='/' component={HomeComponent}></Route>
         <Route exact path={CLASS} component={ClassComponent}></Route>
+        <Route exact path={CLASSNEW} component={ClassNewComponent}></Route>
         <Route exact path={SUBJECT} component={SubjectComponent}></Route>
+        <Route exact path={SUBJECTNEW} component={SubjectNewComponent}></Route>
         <Route exact path={ISSUES} component={IssuesComponent}></Route>
         <Route exact path={LOGIN} component={LoginComponent}></Route>
         <Route exact path={REGISTER} component={RegisterComponent}></Route>

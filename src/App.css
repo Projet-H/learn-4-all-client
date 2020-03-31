@@ -54,20 +54,24 @@ body {
 
 #card-left {
 
-  margin-top: 150px;
-  width: 48%;
-  height: 1000px;
+  margin-top: 100px;
+  width: 46%;
+  height: 1120px;
   float: left;
   background-color: ghostwhite;
-  background: 50% url("./image/student.svg");
+  background: 50% url("./image/students.png");
   background-size: cover;
   background-position: inherit;
   text-transform: uppercase;
   border: outset;
   transition: right .25s ease-in-out;
-
+  margin-left: 2%;
 }
 
+#Title-Profil {
+  margin-top: 50px;
+  text-align: center;
+}
 
 
 
@@ -77,19 +81,17 @@ body {
 
 
   .choice-category--picture {
-    margin-bottom: 48px;
+    margin-bottom: 4px;
     max-width: 320px;
   }
 }
 
 #card-right {
-  margin-top: 150px;
-  width: 48%;
-  height: 1000px;
-
+  margin-top: 100px;
+  width: 46%;
+  height: 1120px;
   float: right;
-  background-color: ghostwhite;
-  background: 50% url("./image/teacher.svg");
+  background: 50% url("./image/teacher-1.png");
   background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
   cursor: hand;
@@ -97,11 +99,12 @@ body {
   border: 10px;
   text-transform: uppercase;
   border: outset;
-
+  margin-right: 2%;
 
 }
 
 #font-card {
   font-size: -webkit-xxx-large;
-  padding-top: 755px;
+  padding-top: 850px;
+
 }
