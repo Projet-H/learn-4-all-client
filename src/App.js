@@ -1,30 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-import { getSessionCookie, SessionContext } from "./context/session";
-import { Routes } from "./routes";
-import { Navbar } from "./components/Navbar";
-import "./App.css";
-
-const App = () => {
-  const [session, setSession] = useState(getSessionCookie());
-  const contextValue = { session, setSession };
-
-  useEffect(() => {
-    setSession(getSessionCookie());
-  }, []);
-
+function App() {
   return (
-    <SessionContext.Provider value={contextValue}>
-      {session.auth ? (
-        <>
-          <Navbar />
-          <Routes />
-        </>
-      ) : (
-        <Routes />
-      )}
-    </SessionContext.Provider>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
 export default App;
