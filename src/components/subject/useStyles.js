@@ -7,6 +7,7 @@ export const useStyles = makeStyles({
     alignItems: "center"
   },
   class: {
+    position: "relative",
     width: "100%",
     maxWidth: 1220,
     padding: 15
@@ -27,11 +28,25 @@ export const useStyles = makeStyles({
     letterSpacing: "0.33px",
     textTransform: "uppercase"
   },
+  addButton: {
+    position: "absolute",
+    top: "15px",
+    right: "15px"
+  },
   list: {
     margin: "35px 0 35px 0"
   },
   pagination: {
     display: "flex",
     justifyContent: "center"
+  },
+  blocNoData: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 125
+  },
+  noData: {
+    width: "100%",
+    maxWidth: 600
   }
 });

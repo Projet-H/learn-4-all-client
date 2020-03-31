@@ -11,42 +11,6 @@
       "name": "BTS - electronique",
       "slug": "troisieme",
       "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 3,
-      "name": "terminale",
-      "slug": "troisieme",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 4,
-      "name": "lorem",
-      "slug": "troisieme",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 5,
-      "name": "BTS - electronique",
-      "slug": "troisieme",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 6,
-      "name": "terminale",
-      "slug": "troisieme",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 7,
-      "name": "3eme",
-      "slug": "troisieme",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 8,
-      "name": "BTS - electronique",
-      "slug": "troisieme",
-      "createdAt": "12 Mars 2020"
     }
   ],
   "subject": [
@@ -60,25 +24,6 @@
       "id": 2,
       "name": "Français",
       "slug": "francais",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 3,
-      "name": "Dessin",
-      "slug": "dessin",
-      "createdAt": "12 Mars 2020"
-    },
-    { "id": 4, "name": "Sport", "slug": "sport", "createdAt": "12 Mars 2020" },
-    {
-      "id": 5,
-      "name": "Electronique",
-      "slug": "electronic",
-      "createdAt": "12 Mars 2020"
-    },
-    {
-      "id": 6,
-      "name": "jesaispas",
-      "slug": "jesaispas",
       "createdAt": "12 Mars 2020"
     }
   ]
