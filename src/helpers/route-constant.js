@@ -7,3 +7,5 @@ export const REGISTER = "/register";
 export const LOGIN = "/login";
 export const NOTFOUND = "/not-found";
 export const PROFIL = "/profil";
+export const FORGOTPASSWORD = "/forgot-password";
+

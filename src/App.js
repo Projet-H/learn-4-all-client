@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "@material-ui/core";
 
 import { getSessionCookie, SessionContext } from "./context/session";
 import { Routes } from "./routes";
@@ -16,16 +15,14 @@ const App = () => {
 
   return (
     <SessionContext.Provider value={contextValue}>
-      <Container>
-        {session.auth ? (
-          <>
-            <Navbar />
-            <Routes />
-          </>
-        ) : (
+      {session.auth ? (
+        <>
+          <Navbar />
           <Routes />
-        )}
-      </Container>
+        </>
+      ) : (
+        <Routes />
+      )}
     </SessionContext.Provider>
   );
 };

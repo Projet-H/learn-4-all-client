@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 
 import { Class } from "../../services/class";
 import { isEmpty } from "../../helpers/utility";
+import { Card } from "../common/Card";
+import { useStyles } from "./useStyles";
 
-const ELEMENT_PER_PAGE = 8;
+const ELEMENT_PER_PAGE = 7;
 
 export const ClassIndex = () => {
+  const classes = useStyles();
   const [data, setData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const { push } = useHistory();
 
   const changeCurrentPage = numPage => {
     setCurrentPage(numPage);
@@ -27,26 +28,38 @@ export const ClassIndex = () => {
   }, []);
 
   return !isEmpty(data) ? (
-    <>
-      <div>
-        {data
-          .slice(
-            currentPage * ELEMENT_PER_PAGE - ELEMENT_PER_PAGE,
-            currentPage * ELEMENT_PER_PAGE - ELEMENT_PER_PAGE + ELEMENT_PER_PAGE
-          )
-          .map((value, index) => (
-            <div key={index} onClick={() => push(`${value.slug}/subject`)}>
-              {value.name}
-            </div>
-          ))}
+    <div className={classes.root}>
+      <div className={classes.class}>
+        <div>
+          <h2 className={classes.subtitle}>Catégorie</h2>
+          <h1 className={classes.title}>Liste des classes</h1>
+        </div>
+        <div className={classes.list}>
+          {data
+            .slice(
+              currentPage * ELEMENT_PER_PAGE - ELEMENT_PER_PAGE,
+              currentPage * ELEMENT_PER_PAGE -
+                ELEMENT_PER_PAGE +
+                ELEMENT_PER_PAGE
+            )
+            .map((value, index) => (
+              <Card
+                key={index}
+                value={value}
+                mainSubtitle="Nombre de matières"
+                route={`${value.slug}/subject`}
+              />
+            ))}
+        </div>
+        <Pagination
+          current={currentPage}
+          total={data.length}
+          pageSize={ELEMENT_PER_PAGE}
+          onChange={changeCurrentPage}
+          className={classes.pagination}
+        />
       </div>
-      <Pagination
-        current={currentPage}
-        total={data.length}
-        pageSize={ELEMENT_PER_PAGE}
-        onChange={changeCurrentPage}
-      />
-    </>
+    </div>
   ) : (
     <div>VIDE</div>
   );

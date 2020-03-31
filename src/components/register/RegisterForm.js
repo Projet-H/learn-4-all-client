@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, TextField, Grid } from "@material-ui/core";
 
+import { useStyles } from "./useStyles";
+
 export const initialValues = {
   email: "",
   username: "",
@@ -20,11 +22,14 @@ export const RegisterForm = ({
   isSubmitting,
   handleBlur
 }) => {
+  const classes = useStyles();
+
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid container spacing={2}>
+    <form onSubmit={handleSubmit} className={classes.form}>
+      <Grid container spacing={2} className={classes.container}>
         <Grid item xs={6}>
           <TextField
+            className={classes.field}
             type="text"
             variant="outlined"
             size="small"
@@ -40,6 +45,7 @@ export const RegisterForm = ({
         </Grid>
         <Grid item xs={6}>
           <TextField
+            className={classes.field}
             type="text"
             variant="outlined"
             size="small"
@@ -55,6 +61,7 @@ export const RegisterForm = ({
         </Grid>
         <Grid item xs={6}>
           <TextField
+            className={classes.field}
             type="text"
             variant="outlined"
             size="small"
@@ -70,6 +77,7 @@ export const RegisterForm = ({
         </Grid>
         <Grid item xs={6}>
           <TextField
+            className={classes.field}
             type="text"
             variant="outlined"
             size="small"
@@ -85,6 +93,7 @@ export const RegisterForm = ({
         </Grid>
         <Grid item xs={12}>
           <TextField
+            className={classes.field}
             type="password"
             variant="outlined"
             size="small"
@@ -100,6 +109,7 @@ export const RegisterForm = ({
         </Grid>
         <Grid item xs={12}>
           <TextField
+            className={classes.field}
             type="password"
             variant="outlined"
             size="small"
@@ -122,6 +132,7 @@ export const RegisterForm = ({
         variant="contained"
         color="primary"
         disabled={isSubmitting || !isValid}
+        className={classes.submit}
       >
         S'inscrire
       </Button>
