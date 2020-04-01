@@ -55,7 +55,7 @@ export const Card = ({ value, mainSubtitle, route }) => {
       </Grid>
       <Grid item xs={6} sm={3} className={classes.element}>
         <div className={classes.title}>{value.createdAt}</div>
-        <div className={classes.subtitle}>Date de création</div>
+        <div className={classes.subtitle}>{value.createDateTime}</div>
       </Grid>
       <Grid item xs={6} sm={2} className={classes.element}>
         <Button variant="contained" color="primary" onClick={() => push(route)}>

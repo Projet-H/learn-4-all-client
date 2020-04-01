@@ -16,17 +16,17 @@ export const Login = () => {
   const { session, setSession } = useContext(SessionContext);
 
   const handleSubmit = async (
-    { login, password },
+    { email, password },
     { setSubmitting, setErrors }
   ) => {
     try {
-      const data = await Auth.login(login, password);
+      const data = await Auth.login(email, password);
       const jsonData = await data.json();
 
-      if (data.status !== 200) throw jsonData;
+      if (data.status !== 201) throw jsonData;
 
-      setSessionCookie(jsonData.token);
-      setSession({ ...session, auth: true, token: jsonData.token });
+      setSessionCookie(jsonData.accessToken);
+      setSession({ ...session, auth: true, token: jsonData.accessToken });
 
       return push(CLASS);
     } catch (err) {

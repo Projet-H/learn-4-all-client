@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -8,6 +9,11 @@ import {
   IconButton
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import * as Cookies from "js-cookie";
+
+import { SessionContext } from "../context/session";
+import { LOGIN } from "../helpers/route-constant";
+import { Auth } from "../services/auth";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,6 +29,18 @@ const useStyles = makeStyles(theme => ({
 
 export const Navbar = () => {
   const classes = useStyles();
+  const { setSession, setUser } = useContext(SessionContext);
+  const { push } = useHistory();
+
+  const handleLogout = async () => {
+    await Auth.logout();
+
+    Cookies.remove("session");
+    setSession({ auth: false, token: "" });
+    setUser({});
+
+    return push(LOGIN);
+  };
 
   return (
     <div className={classes.root}>
@@ -37,9 +55,11 @@ export const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            Learn 4 all
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={handleLogout}>
+            Se déconnecter
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
