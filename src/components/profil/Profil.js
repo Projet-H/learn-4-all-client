@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export const Profil = () => {
 
    function teacher(e) {
@@ -11,11 +10,7 @@ export const Profil = () => {
         e.preventDefault();
         console.log('Etudiant');
       }
-  
-
-
     return (
-      
       <>
         
        <div>
