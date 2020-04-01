@@ -12,7 +12,7 @@ import { SubjectIndex as Subject } from "./components/subject/";
 import { SubjectNew } from "./components/subject/new/Subject";
 import { getSessionCookie } from "./context/session";
 import { IssuesIndex as Issues } from "./components/issues/";
-import { Profil } from "./components/Profil";
+import { Profil } from "./components/profil/Profil";
 import {
   NOTFOUND,
   LOGIN,

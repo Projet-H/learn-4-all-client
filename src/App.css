@@ -53,7 +53,6 @@ body {
 }
 
 #card-left {
-
   margin-top: 150px;
   width: 48%;
   height: 1000px;
@@ -64,18 +63,10 @@ body {
   background-position: inherit;
   text-transform: uppercase;
   border: outset;
-  transition: right .25s ease-in-out;
-
+  transition: right 0.25s ease-in-out;
 }
 
-
-
-
-
-
 @media screen and (min-width: 768px) {
-
-
   .choice-category--picture {
     margin-bottom: 48px;
     max-width: 320px;
@@ -97,8 +88,6 @@ body {
   border: 10px;
   text-transform: uppercase;
   border: outset;
-
-
 }
 
 #font-card {
