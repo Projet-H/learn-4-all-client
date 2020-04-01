@@ -3,7 +3,6 @@ import Pagination from "rc-pagination";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import "rc-pagination/assets/index.css";
-
 import { Class } from "../../services/class";
 import { isEmpty } from "../../helpers/utility";
 import { Card } from "../common/Card";
