@@ -1,35 +1,34 @@
 import React from "react";
 import { Formik } from "formik";
 import { Grid, Typography, Paper } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { initialValues, RegisterForm } from "./RegisterForm";
 import { registerSchema } from "./registerSchema";
-import toast from "../common/Toast";
 import { Auth } from "../../services/auth";
 import { LOGIN } from "../../helpers/route-constant";
 import { useStyles } from "./useStyles";
 
 export const Register = () => {
   const classes = useStyles();
+  const { push } = useHistory();
 
   const handleSubmit = async (
-    { email, username, firstname, lastname, password },
+    { email, firstname, lastname, password },
     { setSubmitting, setFieldError }
   ) => {
     try {
-      const data = await Auth.register(
+      const data = await Auth.register({
+        lastName: lastname,
+        firstName: firstname,
         email,
-        username,
-        firstname,
-        lastname,
         password
-      );
+      });
       const jsonData = await data.json();
 
       if (data.status !== 201) throw jsonData;
 
-      toast.success(`Merci pour votre inscription !`);
+      return push(LOGIN);
     } catch (error) {
       console.log(error);
       console.log({ setSubmitting, setFieldError });

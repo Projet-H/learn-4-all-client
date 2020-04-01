@@ -5,7 +5,6 @@ import { useStyles } from "./useStyles";
 
 export const initialValues = {
   email: "",
-  username: "",
   password: "",
   firstname: "",
   lastname: "",
@@ -59,23 +58,7 @@ export const RegisterForm = ({
             helperText={touched.firstname && errors.firstname}
           ></TextField>
         </Grid>
-        <Grid item xs={6}>
-          <TextField
-            className={classes.field}
-            type="text"
-            variant="outlined"
-            size="small"
-            id="username"
-            name="username"
-            label="Nom d'utilisateur *"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.username}
-            error={touched.username && errors.username !== undefined}
-            helperText={touched.username && errors.username}
-          ></TextField>
-        </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <TextField
             className={classes.field}
             type="text"

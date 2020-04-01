@@ -26,5 +26,31 @@
       "slug": "francais",
       "createdAt": "12 Mars 2020"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstname": "Rémi",
+      "lastname": "Buchaillat",
+      "username": "buRemi",
+      "email": "buchaillat@gmail.com",
+      "role": 2
+    },
+    {
+      "id": 2,
+      "firstname": "Youness",
+      "lastname": "Abbal",
+      "username": "yabbal",
+      "email": "yabbal@gmail.com",
+      "role": 0
+    },
+    {
+      "id": 3,
+      "firstname": "Najla",
+      "lastname": "Chelly",
+      "username": "najlachelly",
+      "email": "najlachelly@gmail.com",
+      "role": 1
+    }
   ]
 }

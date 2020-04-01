@@ -6,11 +6,6 @@ export const registerSchema = Yup.object().shape({
     .email("Votre email est invalide.")
     .max(100, "Votre email ne peut pas avoir plus de 100 caractères.")
     .required("L'email est obligatoire."),
-  username: Yup.string()
-    .trim()
-    .required("Le nom d'utilisateur est obligatoire.")
-    .min(5, "Votre nom d'utilisateur doit comporter minimum 5 caractères.")
-    .max(50, "Votre nom d'utilisateur doit comporter maximum 50 caractères."),
   lastname: Yup.string()
     .trim()
     .required("Le nom est obligatoire.")

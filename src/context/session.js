@@ -16,5 +16,7 @@ export const getSessionCookie = () => {
 
 export const SessionContext = createContext({
   session: { auth: false, token: "" },
-  setSession: () => {}
+  setSession: () => {},
+  user: {},
+  setUser: () => {}
 });
