@@ -4,3 +4,9 @@ export const roleById = {
   2: "ADMIN",
   3: "UNKNOWN"
 };
+
+export const roleIdByName = {
+  TEACHER: 0,
+  STUDENT: 1,
+  ADMIN: 2
+};
