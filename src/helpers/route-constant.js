@@ -10,3 +10,4 @@ export const LOGIN = "/login";
 export const NOTFOUND = "/not-found";
 export const FORGOTPASSWORD = "/forgot-password";
 export const PROFIL = "/profil";
+export const ADMINSCREEN = "/adminscreen";
