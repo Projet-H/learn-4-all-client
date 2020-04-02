@@ -2,12 +2,16 @@ import React, { useContext } from "react";
 import { Typography, Grid, Paper } from "@material-ui/core";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 import { initialValues, LoginForm } from "./LoginForm";
 import { loginSchema } from "./loginSchema";
 import { SessionContext, setSessionCookie } from "../../context/session";
 import { Auth } from "../../services/auth";
-import { CLASS } from "../../helpers/route-constant";
+import { CLASS, PROFIL } from "../../helpers/route-constant";
+import { roleIdByName } from "../../helpers/constants";
+import { getSessionCookie } from "../../context/session";
+import { ability, defineRulesFor } from "../../helpers/ability";
 import { useStyles } from "./useStyles";
 
 export const Login = () => {
@@ -28,7 +32,15 @@ export const Login = () => {
       setSessionCookie(jsonData.accessToken);
       setSession({ ...session, auth: true, token: jsonData.accessToken });
 
-      return push(CLASS);
+      if (getSessionCookie().token) {
+        const currentAuth = jwt_decode(getSessionCookie().token);
+        ability.update(defineRulesFor(currentAuth));
+      }
+
+      const currentAuth = jwt_decode(jsonData.accessToken);
+      return currentAuth.role === roleIdByName.UNKNOWN
+        ? push(PROFIL)
+        : push(CLASS);
     } catch (err) {
       setErrors({ [err.errors.property]: err.errors.message });
     } finally {

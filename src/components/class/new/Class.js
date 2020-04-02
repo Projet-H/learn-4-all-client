@@ -1,16 +1,19 @@
 import React from "react";
 import { Formik } from "formik";
+import { useHistory } from "react-router-dom";
 
 import { initialValues, ClassForm } from "./ClassForm";
 import { classSchema } from "./classSchema";
 import { Class } from "../../../services/class";
+import { CLASS } from "../../../helpers/route-constant";
 import { useStyles } from "./useStyles";
 
 export const ClassNew = () => {
   const classes = useStyles();
   const slugify = require("slugify");
+  const { push } = useHistory();
 
-  const handleSubmit = async ({ name }, { setSubmitting, setErrors }) => {
+  const handleSubmit = async ({ name }, { setErrors }) => {
     const slug = slugify(name, { remove: /[*+~.()'"!:@/\\]/g, lower: true });
     const jsonClass = { name, slug };
 
@@ -18,10 +21,9 @@ export const ClassNew = () => {
     const jsonData = await data.json();
 
     if (data.status !== 201) {
-      console.log("bad");
-      console.log({ setSubmitting, setErrors });
+      setErrors({ [jsonData.errors.property]: jsonData.errors.message });
     } else {
-      console.log(jsonData);
+      return push(CLASS);
     }
   };
 

@@ -8,5 +8,6 @@ export const roleById = {
 export const roleIdByName = {
   TEACHER: 0,
   STUDENT: 1,
-  ADMIN: 2
+  ADMIN: 2,
+  UNKNOWN: 3
 };

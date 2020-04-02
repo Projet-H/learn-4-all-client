@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import { initialValues, SubjectForm } from "./SubjectForm";
 import { subjectSchema } from "./subjectSchema";
@@ -11,21 +11,19 @@ export const SubjectNew = () => {
   const classes = useStyles();
   const slugify = require("slugify");
   const { pathname } = useLocation();
+  const { push } = useHistory();
   const firstpoint = pathname.split("/")[1];
-  console.log(firstpoint);
 
-  const handleSubmit = async ({ name }, { setSubmitting, setErrors }) => {
+  const handleSubmit = async ({ name }, { setErrors }) => {
     const slug = slugify(name, { remove: /[*+~.()'"!:@/\\]/g, lower: true });
-    const jsonSubject = { name, slug };
 
-    const data = await Subject.new(firstpoint, jsonSubject);
+    const data = await Subject.new(firstpoint, slug, name);
     const jsonData = await data.json();
 
     if (data.status !== 201) {
-      console.log("bad");
-      console.log({ setSubmitting, setErrors });
+      setErrors({ [jsonData.errors.property]: jsonData.errors.message });
     } else {
-      console.log(jsonData);
+      return push(`/${firstpoint}/subject`);
     }
   };
 
