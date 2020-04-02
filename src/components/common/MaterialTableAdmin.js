@@ -5,10 +5,8 @@ export const MaterialTableAdmin = () =>{
 
         const [state, setState] = React.useState({
             columns: [{
-                
-
                 title: 'Matière',
-                field: 'matière'
+                field: 'name'
             },
             {
                 title: 'Nom de la personne',
@@ -17,21 +15,24 @@ export const MaterialTableAdmin = () =>{
 
             {
                 title: 'Sujet',
-                field: 'Sujet'
-            },
-            {
-
-            },
+                field: 'Subject'
+                },
+              {
+                  title: 'Date de creation ',
+                  field: "createdAt"
+              },
             ],
             data: [{
-                matière: 'mathématique',
-                firstname: 'Chelly',
-                Sujet: "le sujet soumis "
+                name: 'Anglais',
+                firstname: 'Buchaillat',
+                Subject: "le sujet soumis 1",
+                createdAt: "13 Mars 2020"
             },
             {
-                matière: 'Français',
+                name: 'Mathematique',
                 firstname: 'Chelly',
-                Sujet: "le sujet soumis "
+                Subject: "le sujet soumis 2 ",
+                createdAt: "14 Mars 2020"
                
             },
             ],

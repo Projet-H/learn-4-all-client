@@ -86,7 +86,7 @@ export const Routes = () => {
   });
   const MaterialTableAdminComponent = withTitleAnimation({
     component: MaterialTableAdmin,
-    title: "Admin-screen"
+    title: "Administrateur"
   });
 
   return (
