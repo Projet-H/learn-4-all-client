@@ -13,6 +13,7 @@ import { SubjectNew } from "./components/subject/new/Subject";
 import { getSessionCookie } from "./context/session";
 import { IssuesIndex as Issues } from "./components/issues/";
 import { Profil } from "./components/profil/Profil";
+import { MaterialTableAdmin} from "./components/common/MaterialTableAdmin";
 import {
   NOTFOUND,
   LOGIN,
@@ -22,7 +23,8 @@ import {
   ISSUES,
   CLASSNEW,
   SUBJECTNEW,
-  PROFIL
+  PROFIL,
+  ADMINSCREEN,
 } from "./helpers/route-constant";
 
 import { withTitleAnimation } from "./helpers/withTitle";
@@ -82,6 +84,10 @@ export const Routes = () => {
     component: Profil,
     title: "Profil"
   });
+  const MaterialTableAdminComponent = withTitleAnimation({
+    component: MaterialTableAdmin,
+    title: "Administrateur"
+  });
 
   return (
     <Switch>
@@ -102,6 +108,7 @@ export const Routes = () => {
       <Route exact path={REGISTER} component={RegisterComponent}></Route>
       <Route exact path={PROFIL} component={ProfilComponent}></Route>
       <Route exact path={NOTFOUND} component={NotFoundComponent} />
+      <Route exact path={ADMINSCREEN} component={MaterialTableAdminComponent}></Route>
       <Redirect to={NOTFOUND} />
     </Switch>
   );

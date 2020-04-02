@@ -3,7 +3,6 @@ import fetchIntercept from "fetch-intercept";
 import * as Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
 import { getSessionCookie, SessionContext } from "./context/session";
 import { Routes } from "./routes";
 import { Navbar } from "./components/Navbar";
@@ -61,7 +60,7 @@ const App = () => {
   return (
     <SessionContext.Provider value={contextValue}>
       {session.auth ? (
-        <>
+        <>   
           <Navbar />
           <Routes />
         </>
