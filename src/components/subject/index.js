@@ -17,7 +17,7 @@ export const SubjectIndex = () => {
   const [data, setData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const { pathname } = useLocation();
-  const firstpoint = pathname.split("/")[1];
+  const degree = pathname.split("/")[1];
   const { push } = useHistory();
 
   const changeCurrentPage = numPage => {
@@ -26,13 +26,13 @@ export const SubjectIndex = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(`Passer le slug de la classe : ${firstpoint}`);
-      const response = await Subject.list();
+      const response = await Subject.list(degree);
       const dataJson = await response.json();
-      return setData(dataJson);
+      const data = dataJson ? dataJson.subjects : dataJson;
+      return setData(data);
     };
     fetchData();
-  }, [firstpoint]);
+  }, [degree]);
 
   return (
     <div className={classes.root}>

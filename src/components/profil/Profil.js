@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Button } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { useHistory } from "react-router-dom";
 
 import { useStyles } from "./useStyles";
 import teacherPicture from "../../assets/images/teacher.svg";
 import studentPicture from "../../assets/images/student.svg";
 import { roleIdByName } from "../../helpers/constants";
+import { SessionContext } from "../../context/session";
+import { CLASS } from "../../helpers/route-constant";
+import { ability, defineRulesFor } from "../../helpers/ability";
+import { Me } from "../../services/me";
 
 export const Profil = () => {
   const classes = useStyles();
+  const { user, setUser } = useContext(SessionContext);
+  const { push } = useHistory();
 
-  const handleClick = roleId => {
-    console.log(roleId);
+  const handleClick = async roleId => {
+    const data = await Me.edit(user.id, {
+      lastName: user.lastName,
+      firstName: user.firstName,
+      email: user.email,
+      role: roleId
+    });
+    const jsonData = await data.json();
+
+    if (data.status !== 200) {
+      console.log("error", jsonData);
+    } else {
+      const currentAuth = { id: user.id, role: roleId };
+      ability.update(defineRulesFor(currentAuth));
+      setUser({ ...user, role: roleId });
+      console.log("mettre à jour le token dans les cookies");
+      return push(CLASS);
+    }
   };
 
   return (

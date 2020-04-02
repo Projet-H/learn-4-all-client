@@ -4,15 +4,13 @@ export const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    height: "100vh"
+    alignItems: "center"
   },
   class: {
     position: "relative",
     width: "100%",
     maxWidth: 1220,
-    padding: 15,
-    marginTop: -64
+    padding: 15
   },
   title: {
     color: "#263238",
@@ -28,11 +26,20 @@ export const useStyles = makeStyles({
     fontWeight: 500,
     lineHeight: "13px",
     letterSpacing: "0.33px",
-    textTransform: "uppercase",
-    marginTop: 0
+    textTransform: "uppercase"
   },
-  button: {
-    height: 55,
-    marginTop: 10
+  addButton: {
+    position: "absolute",
+    top: "15px",
+    right: "15px"
+  },
+  blocNoData: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 125
+  },
+  noData: {
+    width: "100%",
+    maxWidth: 600
   }
 });

@@ -34,6 +34,7 @@ export const defineRulesFor = user => {
       can("add", "Subject", { userId: user.id });
       break;
     default:
+      can("view", "Profil", { userId: user.id });
       break;
   }
   return rules;

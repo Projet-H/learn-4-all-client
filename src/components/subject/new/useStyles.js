@@ -11,7 +11,8 @@ export const useStyles = makeStyles({
     position: "relative",
     width: "100%",
     maxWidth: 1220,
-    padding: 15
+    padding: 15,
+    marginTop: -64
   },
   title: {
     color: "#263238",

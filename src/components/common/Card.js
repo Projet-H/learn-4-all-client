@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 import { useHistory } from "react-router-dom";
 import { makeStyles, Grid, Button } from "@material-ui/core";
 
@@ -54,8 +55,10 @@ export const Card = ({ value, mainSubtitle, route }) => {
         <div className={classes.subtitle}>{mainSubtitle}</div>
       </Grid>
       <Grid item xs={6} sm={3} className={classes.element}>
-        <div className={classes.title}>{value.createdAt}</div>
-        <div className={classes.subtitle}>{value.createDateTime}</div>
+        <div className={classes.title}>
+          <Moment format="DD/MM/YYYY">{value.createDateTime}</Moment>
+        </div>
+        <div className={classes.subtitle}>Date de création</div>
       </Grid>
       <Grid item xs={6} sm={2} className={classes.element}>
         <Button variant="contained" color="primary" onClick={() => push(route)}>

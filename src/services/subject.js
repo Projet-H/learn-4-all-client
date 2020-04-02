@@ -1,6 +1,7 @@
 import { requests } from "./requests";
 
 export const Subject = {
-  list: () => requests.get("/subject"),
-  new: (grade, subject) => requests.post("/subject", { grade, subject })
+  list: slug => requests.get(`/degree/${slug}`),
+  new: (slugDegree, slug, name) =>
+    requests.post("/subjects", { slugDegree, slug, name })
 };

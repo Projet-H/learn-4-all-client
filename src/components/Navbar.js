@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import * as Cookies from "js-cookie";
 
 import { SessionContext } from "../context/session";
-import { LOGIN } from "../helpers/route-constant";
+import { LOGIN, CLASS } from "../helpers/route-constant";
 import { Auth } from "../services/auth";
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    color: "#FFF"
+    color: "#FFF",
+    cursor: "pointer"
   }
 }));
 
@@ -55,7 +56,11 @@ export const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            onClick={() => push(CLASS)}
+          >
             Learn 4 all
           </Typography>
           <Button color="inherit" onClick={handleLogout}>

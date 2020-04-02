@@ -3,10 +3,12 @@ import fetchIntercept from "fetch-intercept";
 import * as Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+
 import { getSessionCookie, SessionContext } from "./context/session";
 import { Routes } from "./routes";
 import { Navbar } from "./components/Navbar";
 import { LOGIN } from "./helpers/route-constant";
+import { Landing } from "./components/Landing";
 import { ability, defineRulesFor } from "./helpers/ability";
 import "./App.css";
 
@@ -60,12 +62,12 @@ const App = () => {
   return (
     <SessionContext.Provider value={contextValue}>
       {session.auth ? (
-        <>   
+        <>
           <Navbar />
           <Routes />
         </>
       ) : (
-        <Routes />
+        <Landing />
       )}
     </SessionContext.Provider>
   );
