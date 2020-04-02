@@ -8,7 +8,6 @@ import { Routes } from "./routes";
 import { Navbar } from "./components/Navbar";
 import { LOGIN } from "./helpers/route-constant";
 import { ability, defineRulesFor } from "./helpers/ability";
-import { MaterialTableAdmin } from "./components/common/MaterialTableAdmin";
 import "./App.css";
 
 const App = () => {
@@ -62,7 +61,6 @@ const App = () => {
     <SessionContext.Provider value={contextValue}>
       {session.auth ? (
         <>   
-        <MaterialTableAdmin />
           <Navbar />
           <Routes />
         </>
