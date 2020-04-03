@@ -8,13 +8,16 @@ import { isEmpty } from "../../helpers/utility";
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    height: "calc(100vh - 68px)",
+    height: "100%",
+    maxHeight: "calc(100vh - 68px)",
+    minHeight: "calc(100vh - 68px)",
     flexDirection: "column",
     backgroundColor: "#FFF"
   },
   interface: {
     flexGrow: 1,
-    padding: "10px 10px 0 10px"
+    padding: "10px 10px 0 10px",
+    overflow: "auto"
   },
   send: {
     display: "flex",
@@ -81,6 +84,7 @@ export const Conversation = () => {
                 user.id === value.user.id ? classes.mine : classes.other
               }
             >
+              {value.content}
               {value.content}
             </div>
           </div>
