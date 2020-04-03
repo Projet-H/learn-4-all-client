@@ -7,14 +7,14 @@ import { useStyles } from "./useStyles";
 import teacherPicture from "../../assets/images/teacher.svg";
 import studentPicture from "../../assets/images/student.svg";
 import { roleIdByName } from "../../helpers/constants";
-import { SessionContext } from "../../context/session";
+import { SessionContext, setSessionCookie } from "../../context/session";
 import { CLASS } from "../../helpers/route-constant";
 import { ability, defineRulesFor } from "../../helpers/ability";
 import { Me } from "../../services/me";
 
 export const Profil = () => {
   const classes = useStyles();
-  const { user, setUser } = useContext(SessionContext);
+  const { user, setUser, session, setSession } = useContext(SessionContext);
   const { push } = useHistory();
 
   const handleClick = async roleId => {
@@ -32,7 +32,9 @@ export const Profil = () => {
       const currentAuth = { id: user.id, role: roleId };
       ability.update(defineRulesFor(currentAuth));
       setUser({ ...user, role: roleId });
-      console.log("mettre à jour le token dans les cookies");
+
+      setSessionCookie(jsonData.accessToken);
+      setSession({ ...session, auth: true, token: jsonData.accessToken });
       return push(CLASS);
     }
   };

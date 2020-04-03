@@ -36,21 +36,49 @@ export const Subject = () => {
   const optionTable = {
     columns: [
       { title: "Titre", field: "name" },
-      { title: "Prénom", field: "firstName" },
-      { title: "Nom", field: "lastName" }
+      { title: "Slug", field: "slug" },
+      { title: "Date de création", field: "createDateTime" }
     ],
     options: {
       sorting: false,
       pageSizeOptions: [10, 15, 20],
       pageSize: 10,
-      search: false
+      search: false,
+      actionsColumnIndex: -1
     }
+  };
+
+  const validate = rowData => {
+    console.log("You are acceptings " + rowData.id);
+  };
+
+  const deny = rowData => {
+    console.log("You are refusing " + rowData.id);
   };
 
   useEffect(() => {
     const fetchData = () => {
-      setTotalCount(0);
-      setData([]);
+      setTotalCount(3);
+      setData([
+        {
+          id: 6,
+          name: "ezrferferferf",
+          slug: "ezrferferferf",
+          createDateTime: "2020-04-02 23:59:11.485706+00"
+        },
+        {
+          id: 3,
+          name: "Bac S",
+          slug: "Bac S",
+          createDateTime: "2020-04-02 18:03:52.927448+00"
+        },
+        {
+          id: 8,
+          name: "azerazerzearaze",
+          slug: "azerazerzearaze",
+          createDateTime: "2020-04-03 03:04:45.471598+00"
+        }
+      ]);
     };
     fetchData();
   }, []);
@@ -66,6 +94,18 @@ export const Subject = () => {
           optionTable={optionTable}
           data={data}
           totalCount={totalCount}
+          actions={[
+            {
+              icon: "check",
+              tooltip: "Accepter la création de la classe",
+              onClick: (event, rowData) => validate(rowData)
+            },
+            {
+              icon: "delete",
+              tooltip: "Refuser la création de la classe",
+              onClick: (event, rowData) => deny(rowData)
+            }
+          ]}
         ></MTable>
       </div>
     </div>

@@ -4,8 +4,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Login } from "./login/Login";
 import { Register } from "./register/Register";
 import { NotFound } from "./NotFound";
+import { Home } from "./Home";
 
-import { NOTFOUND, LOGIN, REGISTER } from "../helpers/route-constant";
+import { NOTFOUND, LOGIN, REGISTER, HOME } from "../helpers/route-constant";
 import { withTitle } from "../helpers/withTitle";
 
 export const Landing = () => {
@@ -18,10 +19,14 @@ export const Landing = () => {
     component: NotFound,
     title: "404 - Not Found"
   });
+  const HomeComponent = withTitle({
+    component: Home,
+    title: "Accueil"
+  });
 
   return (
     <Switch>
-      <Redirect exact from="/" to={LOGIN} />
+      <Route exact path={HOME} component={HomeComponent}></Route>
       <Route path={LOGIN} component={LoginComponent}></Route>
       <Route path={REGISTER} component={RegisterComponent}></Route>
       <Route exact path={NOTFOUND} component={NotFoundComponent} />
