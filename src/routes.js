@@ -12,7 +12,7 @@ import { SubjectIndex as Subject } from "./components/subject/";
 import { SubjectNew } from "./components/subject/new/Subject";
 import { IssuesIndex as Issues } from "./components/issues/";
 import { IssuesNew } from "./components/issues/new/Issues";
-import { Conversation } from "./components/issues/Conversation";
+import { Conversation } from "./components/issues/conversations/Conversation";
 import { Profil } from "./components/profil/Profil";
 import { Degree as ValidateDegree } from "./components/validate/Degree";
 import { Subject as ValidateSubject } from "./components/validate/Subject";

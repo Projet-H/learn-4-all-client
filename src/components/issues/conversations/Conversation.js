@@ -1,55 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
+import { Formik } from "formik";
 
-import { SessionContext } from "../../context/session";
-import { isEmpty } from "../../helpers/utility";
-
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    height: "100%",
-    maxHeight: "calc(100vh - 68px)",
-    minHeight: "calc(100vh - 68px)",
-    flexDirection: "column",
-    backgroundColor: "#FFF"
-  },
-  interface: {
-    flexGrow: 1,
-    padding: "10px 10px 0 10px",
-    overflow: "auto"
-  },
-  send: {
-    display: "flex",
-    padding: 15,
-    alignItems: "center"
-  },
-  bubbleMine: {
-    fontSize: 14,
-    display: "flex",
-    justifyContent: "flex-end"
-  },
-  bubbleOther: {
-    fontSize: 14,
-    display: "flex"
-  },
-  mine: {
-    backgroundColor: "#007aff",
-    color: "#FFF",
-    margin: "10px 0 10px 0",
-    borderRadius: 20,
-    padding: "10px 15px",
-    maxWidth: "75%"
-  },
-  other: {
-    backgroundColor: "#f4f4f8",
-    color: "#000",
-    margin: "10px 0 10px 0",
-    borderRadius: 20,
-    padding: "10px 15px",
-    maxWidth: "75%"
-  }
-});
+import { SessionContext } from "../../../context/session";
+import { initialValues, ConversationForm } from "./ConversationForm";
+import { useStyles } from "./useStyles";
+import { isEmpty } from "../../../helpers/utility";
 
 export const Conversation = () => {
   const classes = useStyles();
@@ -58,12 +14,22 @@ export const Conversation = () => {
   const { socket, user } = useContext(SessionContext);
   const [data, setData] = useState([]);
 
+  const handleSubmit = ({ message }, { resetForm }) => {
+    resetForm({});
+
+    socket.emit("send-message", {
+      content: message,
+      conversationId: endpoint
+    });
+  };
+
   useEffect(() => {
     if (!isEmpty(socket)) {
       socket.emit("get-conversation", {
         id: endpoint
       });
       socket.on("get-conversation-response", param => setData(param));
+      socket.on("sent-message", param => console.log(param));
     }
   }, [endpoint, socket]);
 
@@ -85,12 +51,20 @@ export const Conversation = () => {
               }
             >
               {value.content}
-              {value.content}
             </div>
           </div>
         ))}
       </div>
-      <div className={classes.send}>Ecrire le message à envoyer</div>
+      <div className={classes.send}>
+        <Formik
+          initialErrors={initialValues}
+          initialValues={initialValues}
+          component={ConversationForm}
+          onSubmit={handleSubmit}
+          validateOnBlur
+          validateOnChange
+        ></Formik>
+      </div>
     </div>
   ) : (
     <div>nok</div>
