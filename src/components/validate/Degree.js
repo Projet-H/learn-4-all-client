@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 
 import { MTable } from "../common/MTable";
 import { Class } from "../../services/class";
+import { success, fail } from "../common/Toast";
 
 const useStyles = makeStyles({
   root: {
@@ -55,8 +56,10 @@ export const Degree = () => {
     const data = await Class.active(rowData.id);
     const jsonData = await data.json();
     if (data.status !== 200) {
+      fail("La classe n'a pas été validé; Vueillez réessayer ultérieurement.");
       console.log("error", jsonData);
     } else {
+      success("La classe a été validé.");
       push("class");
     }
   };
@@ -66,8 +69,10 @@ export const Degree = () => {
     const jsonData = await data.json();
     console.log(data);
     if (data.status !== 200) {
+      fail("La classe n'a pas été validé; Vueillez réessayer ultérieurement.");
       console.log("error", jsonData);
     } else {
+      success("La classe a été refusé.");
       push("class");
     }
   };

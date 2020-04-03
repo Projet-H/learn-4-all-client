@@ -141,7 +141,7 @@ export const RegisterForm = ({
               <MenuItem value="primaire">Primaire</MenuItem>
               <MenuItem value="college">Collège</MenuItem>
               <MenuItem value="lycee">Lycée</MenuItem>
-              <MenuItem value="lycee">École supérieur</MenuItem>
+              <MenuItem value="ecolesuperieur">École supérieur</MenuItem>
             </Select>
           </FormControl>
         </Grid>

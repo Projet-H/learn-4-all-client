@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 import { MTable } from "../common/MTable";
+import { Subject as SubjectAPI } from "../../services/subject";
+import { success, fail } from "../common/Toast";
 
 const useStyles = makeStyles({
   root: {
@@ -32,6 +35,7 @@ export const Subject = () => {
   const classes = useStyles();
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState([]);
+  const { push } = useHistory();
 
   const optionTable = {
     columns: [
@@ -48,37 +52,38 @@ export const Subject = () => {
     }
   };
 
-  const validate = rowData => {
-    console.log("You are acceptings " + rowData.id);
+  const active = async rowData => {
+    const data = await SubjectAPI.active(rowData.id);
+    const jsonData = await data.json();
+    if (data.status !== 200) {
+      fail("La classe n'a pas été validé; Vueillez réessayer ultérieurement.");
+      console.log("error", jsonData);
+    } else {
+      success("La classe a été validé.");
+      push("subject");
+    }
   };
 
-  const deny = rowData => {
-    console.log("You are refusing " + rowData.id);
+  const remove = async rowData => {
+    const data = await SubjectAPI.remove(rowData.id);
+    const jsonData = await data.json();
+    console.log(data);
+    if (data.status !== 200) {
+      fail("La classe n'a pas été validé; Vueillez réessayer ultérieurement.");
+      console.log("error", jsonData);
+    } else {
+      success("La classe a été refusé.");
+      push("subject");
+    }
   };
 
   useEffect(() => {
-    const fetchData = () => {
-      setTotalCount(3);
-      setData([
-        {
-          id: 6,
-          name: "ezrferferferf",
-          slug: "ezrferferferf",
-          createDateTime: "2020-04-02 23:59:11.485706+00"
-        },
-        {
-          id: 3,
-          name: "Bac S",
-          slug: "Bac S",
-          createDateTime: "2020-04-02 18:03:52.927448+00"
-        },
-        {
-          id: 8,
-          name: "azerazerzearaze",
-          slug: "azerazerzearaze",
-          createDateTime: "2020-04-03 03:04:45.471598+00"
-        }
-      ]);
+    const fetchData = async () => {
+      const data = await SubjectAPI.listInactive();
+      const jsonData = await data.json();
+
+      setTotalCount(jsonData.length);
+      setData(jsonData);
     };
     fetchData();
   }, []);
@@ -97,13 +102,13 @@ export const Subject = () => {
           actions={[
             {
               icon: "check",
-              tooltip: "Accepter la création de la classe",
-              onClick: (event, rowData) => validate(rowData)
+              tooltip: "Accepter la création de la matière",
+              onClick: (event, rowData) => active(rowData)
             },
             {
               icon: "delete",
-              tooltip: "Refuser la création de la classe",
-              onClick: (event, rowData) => deny(rowData)
+              tooltip: "Refuser la création de la matière",
+              onClick: (event, rowData) => remove(rowData)
             }
           ]}
         ></MTable>

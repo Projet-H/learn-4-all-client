@@ -1,56 +1,42 @@
-import React, { createRef } from "react";
-import { useSnackbar, SnackbarProvider } from "notistack";
-import { Button } from "@material-ui/core";
-import { Close as CloseIcon } from "@material-ui/icons";
+import { toast } from "react-toastify";
 
-let useSnackbarRef;
-const setUseSnackbarRef = useSnackbarRefProp => {
-  useSnackbarRef = useSnackbarRefProp;
+const optionsSucces = {
+  containerId: "mainToast",
+  type: toast.TYPE.SUCCESS,
+  hideProgressBar: true,
+  autoClose: 5000
 };
 
-const notistackRef = createRef();
-const onClickDismiss = key => () => {
-  notistackRef.current.closeSnackbar(key);
+export const success = text => {
+  toast(text, optionsSucces);
 };
 
-const InnerSnackbarConfigurator = ({ setUseSnackbarRef }) => {
-  setUseSnackbarRef(useSnackbar());
-  return null;
+const optionsWarning = {
+  containerId: "mainToast",
+  type: toast.TYPE.WARNING,
+  hideProgressBar: true,
+  autoClose: 5000
+};
+export const warning = text => {
+  toast(text, optionsWarning);
 };
 
-export const Snackbar = ({ children }) => {
-  return (
-    <SnackbarProvider
-      maxSnack={3}
-      anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
-      style={{ whiteSpace: "pre-line" }}
-      ref={notistackRef}
-      action={key => (
-        <Button onClick={onClickDismiss(key)}>
-          <CloseIcon />
-        </Button>
-      )}
-    >
-      <InnerSnackbarConfigurator setUseSnackbarRef={setUseSnackbarRef} />
-      {children}
-    </SnackbarProvider>
-  );
+const optionsFail = {
+  containerId: "mainToast",
+  type: toast.TYPE.ERROR,
+  hideProgressBar: true,
+  autoClose: 5000
+};
+export const fail = text => {
+  toast(text, optionsFail);
 };
 
-export default {
-  success(msg) {
-    this.toast(msg, "success");
-  },
-  error(msg) {
-    this.toast(msg, "error");
-  },
-  warning(msg) {
-    this.toast(msg, "warning");
-  },
-  message(msg) {
-    this.toast(msg, "message");
-  },
-  toast(msg, variant = "default") {
-    useSnackbarRef.enqueueSnackbar(msg, { variant });
-  }
+const optionsMessage = {
+  containerId: "mainToast",
+  type: toast.TYPE.INFO,
+  hideProgressBar: true,
+  autoClose: 5000
+};
+export const message = text => {
+  toast(text, optionsMessage);
 };

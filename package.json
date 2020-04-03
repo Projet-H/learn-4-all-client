@@ -17,7 +17,6 @@
     "jwt-decode": "2.2.0",
     "material-table": "1.57.2",
     "moment": "2.24.0",
-    "notistack": "0.9.9",
     "rc-pagination": "2.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -25,6 +24,7 @@
     "react-moment": "0.9.7",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.4.1",
+    "react-toastify": "^5.5.0",
     "slugify": "1.4.0",
     "socket.io-client": "2.3.0",
     "yup": "0.28.3"

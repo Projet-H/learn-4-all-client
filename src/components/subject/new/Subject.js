@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik } from "formik";
 import { useLocation, useHistory } from "react-router-dom";
 
 import { initialValues, SubjectForm } from "./SubjectForm";
 import { subjectSchema } from "./subjectSchema";
+import { SessionContext } from "../../../context/session";
 import { Subject } from "../../../services/subject";
+import { roleById, role } from "../../../helpers/constants";
+import { success, warning, fail } from "../../common/Toast";
 import { useStyles } from "./useStyles";
 
 export const SubjectNew = () => {
@@ -12,17 +15,27 @@ export const SubjectNew = () => {
   const slugify = require("slugify");
   const { pathname } = useLocation();
   const { push } = useHistory();
+  const { user } = useContext(SessionContext);
   const firstpoint = pathname.split("/")[1];
 
   const handleSubmit = async ({ name }, { setErrors }) => {
     const slug = slugify(name, { remove: /[*+~.()'"!:@/\\]/g, lower: true });
+    const active = roleById[user.role] === role.ADMIN ? true : false;
 
-    const data = await Subject.new(firstpoint, slug, name);
+    const data = await Subject.new(firstpoint, slug, name, active);
     const jsonData = await data.json();
 
     if (data.status !== 201) {
+      fail(
+        "Une erreur s'est produite lors de la création de la matière. Veuillez réessayez ultérieurement."
+      );
       setErrors({ [jsonData.errors.property]: jsonData.errors.message });
     } else {
+      roleById[user.role] === role.ADMIN
+        ? success("La création de la matière est validé.")
+        : warning(
+            "La création de la matière est en attente de validation par l'administration."
+          );
       return push(`/${firstpoint}/subject`);
     }
   };

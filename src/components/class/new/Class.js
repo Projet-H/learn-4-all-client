@@ -8,6 +8,7 @@ import { Class } from "../../../services/class";
 import { CLASS } from "../../../helpers/route-constant";
 import { SessionContext } from "../../../context/session";
 import { roleById, role } from "../../../helpers/constants";
+import { success, warning, fail } from "../../common/Toast";
 import { useStyles } from "./useStyles";
 
 export const ClassNew = () => {
@@ -27,8 +28,16 @@ export const ClassNew = () => {
     const jsonData = await data.json();
 
     if (data.status !== 201) {
+      fail(
+        "Une erreur s'est produite lors de la création de la classe. Veuillez réessayez ultérieurement."
+      );
       setErrors({ [jsonData.errors.property]: jsonData.errors.message });
     } else {
+      roleById[user.role] === role.ADMIN
+        ? success("La création de la classe est validé.")
+        : warning(
+            "La création de la classe est en attente de validation par l'administration."
+          );
       return push(CLASS);
     }
   };

@@ -3,6 +3,8 @@ import fetchIntercept from "fetch-intercept";
 import * as Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 import { getSessionCookie, SessionContext } from "./context/session";
 import { Routes } from "./routes";
@@ -73,6 +75,11 @@ const App = () => {
         <>
           <Navbar />
           <Routes />
+          <ToastContainer
+            enableMultiContainer
+            position={toast.POSITION.BOTTOM_LEFT}
+            containerId={"mainToast"}
+          />
         </>
       ) : (
         <Landing />
