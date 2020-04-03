@@ -15,7 +15,7 @@ export const ClassNew = () => {
 
   const handleSubmit = async ({ name }, { setErrors }) => {
     const slug = slugify(name, { remove: /[*+~.()'"!:@/\\]/g, lower: true });
-    const jsonClass = { name, slug };
+    const jsonClass = { name, slug, active: false };
 
     const data = await Class.new(jsonClass);
     const jsonData = await data.json();

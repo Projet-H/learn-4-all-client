@@ -65,11 +65,28 @@ export const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: 15
   },
+  iconSchool: {
+    textAlign: "center",
+    marginTop: 8,
+    marginBottom: "-10px"
+  },
   field: {
     width: "100%"
+  },
+  formSelect: {
+    "& > div": {
+      padding: 10
+    }
+  },
+  formLabel: {
+    marginTop: "-8px"
   },
   submit: {
     padding: 14,
     margin: "16px 0 16px 0"
+  },
+  errorLevel: {
+    textAlign: "center",
+    color: "red"
   }
 }));

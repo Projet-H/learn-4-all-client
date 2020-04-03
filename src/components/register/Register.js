@@ -14,21 +14,25 @@ export const Register = () => {
   const { push } = useHistory();
 
   const handleSubmit = async (
-    { email, firstname, lastname, password },
+    { email, firstname, lastname, password, level },
     { setSubmitting, setFieldError }
   ) => {
     try {
-      const data = await Auth.register({
-        lastName: lastname,
-        firstName: firstname,
-        email,
-        password
-      });
-      const jsonData = await data.json();
+      if (level === "primaire") {
+        setFieldError("level", "test");
+      } else {
+        const data = await Auth.register({
+          lastName: lastname,
+          firstName: firstname,
+          email,
+          password
+        });
+        const jsonData = await data.json();
 
-      if (data.status !== 201) throw jsonData;
+        if (data.status !== 201) throw jsonData;
 
-      return push(LOGIN);
+        return push(LOGIN);
+      }
     } catch (error) {
       console.log(error);
       console.log({ setSubmitting, setFieldError });

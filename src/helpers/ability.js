@@ -20,18 +20,25 @@ export const defineRulesFor = user => {
       can("view", "Subject", { userId: user.id });
       can("add", "Class", { userId: user.id });
       can("add", "Subject", { userId: user.id });
+      can("view", "Issues", { userId: user.id });
+      can("validate", "Degree", { userId: user.id });
+      can("validate", "Subject", { userId: user.id });
       break;
     case "TEACHER":
       can("view", "Class", { userId: user.id });
       can("view", "Subject", { userId: user.id });
       can("add", "Class", { userId: user.id });
       can("add", "Subject", { userId: user.id });
+      can("view", "Issues", { userId: user.id });
+      can("join", "Issues", { userId: user.id });
       break;
     case "STUDENT":
       can("view", "Class", { userId: user.id });
       can("view", "Subject", { userId: user.id });
       can("add", "Class", { userId: user.id });
       can("add", "Subject", { userId: user.id });
+      can("view", "Issues", { userId: user.id });
+      can("add", "Issues", { userId: user.id });
       break;
     default:
       can("view", "Profil", { userId: user.id });

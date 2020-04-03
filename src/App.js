@@ -15,7 +15,15 @@ import "./App.css";
 const App = () => {
   const [session, setSession] = useState(getSessionCookie());
   const [user, setUser] = useState({});
-  const contextValue = { session, setSession, user, setUser };
+  const [socket, setSocket] = useState({});
+  const contextValue = {
+    session,
+    setSession,
+    user,
+    setUser,
+    socket,
+    setSocket
+  };
   const { push } = useHistory();
 
   fetchIntercept.register({

@@ -1,30 +1,33 @@
 import React, { useEffect, useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import io from "socket.io-client";
 
+import { getSessionCookie } from "./context/session";
 import { Home } from "./components/Home";
 import { NotFound } from "./components/NotFound";
-import { Register } from "./components/register/Register";
-import { Login } from "./components/login/Login";
 import { ClassIndex as Class } from "./components/class/";
 import { ClassNew } from "./components/class/new/Class";
 import { SubjectIndex as Subject } from "./components/subject/";
 import { SubjectNew } from "./components/subject/new/Subject";
-import { getSessionCookie } from "./context/session";
 import { IssuesIndex as Issues } from "./components/issues/";
+import { IssuesNew } from "./components/issues/new/Issues";
 import { Profil } from "./components/profil/Profil";
-import { MaterialTableAdmin } from "./components/common/MaterialTableAdmin";
+import { Degree as ValidateDegree } from "./components/validate/Degree";
+import { Subject as ValidateSubject } from "./components/validate/Subject";
 import {
   NOTFOUND,
   LOGIN,
-  REGISTER,
   CLASS,
   SUBJECT,
   ISSUES,
   CLASSNEW,
   SUBJECTNEW,
+  ISSUESNEW,
   PROFIL,
-  ADMINSCREEN
+  VALIDATECLASS,
+  VALIDATESUBJECT,
+  HOME
 } from "./helpers/route-constant";
 
 import { withTitleAnimation } from "./helpers/withTitle";
@@ -33,7 +36,7 @@ import { Me } from "./services/me";
 import { Can } from "./helpers/Can";
 
 export const Routes = () => {
-  const { setUser } = useContext(SessionContext);
+  const { setUser, setSocket } = useContext(SessionContext);
 
   useEffect(() => {
     const getOwnUser = async () => {
@@ -41,41 +44,43 @@ export const Routes = () => {
       const response = await Me.own(userId);
       const dataJson = await response.json();
       setUser({ ...dataJson, password: "" });
+
+      const socket = io.connect("http://localhost:3001/", {
+        query: { token: getSessionCookie().token },
+        forceNew: true
+      });
+      setSocket(socket);
     };
     getOwnUser();
-  }, [setUser]);
+  }, [setSocket, setUser]);
 
   const HomeComponent = withTitleAnimation({
     component: Home,
-    title: "Home"
+    title: "Accueil"
   });
   const ClassComponent = withTitleAnimation({
     component: Class,
-    title: "Class"
+    title: "Listes des classes"
   });
   const ClassNewComponent = withTitleAnimation({
     component: ClassNew,
-    title: "ClassNew"
+    title: "Création d'une classe"
   });
   const SubjectComponent = withTitleAnimation({
     component: Subject,
-    title: "Subject"
+    title: "Liste des matières"
   });
   const SubjectNewComponent = withTitleAnimation({
     component: SubjectNew,
-    title: "SubjectNew"
+    title: "Création des matières"
   });
   const IssuesComponent = withTitleAnimation({
     component: Issues,
-    title: "Issues"
+    title: "Liste des problèmes"
   });
-  const RegisterComponent = withTitleAnimation({
-    component: Register,
-    title: "Register"
-  });
-  const LoginComponent = withTitleAnimation({
-    component: Login,
-    title: "Login"
+  const IssuesNewComponent = withTitleAnimation({
+    component: IssuesNew,
+    title: "Création d'un problème"
   });
   const NotFoundComponent = withTitleAnimation({
     component: NotFound,
@@ -83,16 +88,21 @@ export const Routes = () => {
   });
   const ProfilComponent = withTitleAnimation({
     component: Profil,
-    title: "Profil"
+    title: "Choix du rôle"
   });
-  const MaterialTableAdminComponent = withTitleAnimation({
-    component: MaterialTableAdmin,
-    title: "Administrateur"
+  const ValidateClassComponent = withTitleAnimation({
+    component: ValidateDegree,
+    title: "Gestion des classes"
+  });
+  const ValidateSubjectComponent = withTitleAnimation({
+    component: ValidateSubject,
+    title: "Gestion des matières"
   });
 
   return (
     <Switch>
-      <Route exact path="/" component={HomeComponent}></Route>
+      <Route exact path={HOME} component={HomeComponent}></Route>
+      <Route exact path={LOGIN} component={HomeComponent}></Route>
       <Route
         exact
         path={CLASS}
@@ -111,11 +121,42 @@ export const Routes = () => {
           </Can>
         )}
       />
-      <Route exact path={SUBJECT} component={SubjectComponent}></Route>
-      <Route exact path={SUBJECTNEW} component={SubjectNewComponent}></Route>
-      <Route exact path={ISSUES} component={IssuesComponent}></Route>
-      <Route exact path={LOGIN} component={LoginComponent}></Route>
-      <Route exact path={REGISTER} component={RegisterComponent}></Route>
+      <Route
+        exact
+        path={SUBJECT}
+        component={props => (
+          <Can I="view" a="Subject">
+            {() => <SubjectComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={SUBJECTNEW}
+        component={props => (
+          <Can I="add" a="Subject">
+            {() => <SubjectNewComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={ISSUES}
+        component={props => (
+          <Can I="view" a="Issues">
+            {() => <IssuesComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={ISSUESNEW}
+        component={props => (
+          <Can I="add" a="Issues">
+            {() => <IssuesNewComponent {...props} />}
+          </Can>
+        )}
+      />
       <Route
         exact
         path={PROFIL}
@@ -125,12 +166,25 @@ export const Routes = () => {
           </Can>
         )}
       />
-      <Route exact path={NOTFOUND} component={NotFoundComponent} />
       <Route
         exact
-        path={ADMINSCREEN}
-        component={MaterialTableAdminComponent}
-      ></Route>
+        path={VALIDATECLASS}
+        component={props => (
+          <Can I="validate" a="Degree">
+            {() => <ValidateClassComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={VALIDATESUBJECT}
+        component={props => (
+          <Can I="validate" a="Subject">
+            {() => <ValidateSubjectComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route exact path={NOTFOUND} component={NotFoundComponent} />
       <Redirect to={NOTFOUND} />
     </Switch>
   );
