@@ -33,7 +33,7 @@ export const IssuesIndex = () => {
     e.stopPropagation();
 
     socket.emit("join-conversation", {
-      id: idConversation
+      conversationId: idConversation
     });
 
     socket.on("join-conversation-response", () =>
