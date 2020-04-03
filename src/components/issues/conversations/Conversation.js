@@ -67,6 +67,6 @@ export const Conversation = () => {
       </div>
     </div>
   ) : (
-    <div>nok</div>
+    ""
   );
 };
