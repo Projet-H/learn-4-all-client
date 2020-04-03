@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 
@@ -6,16 +6,22 @@ import { initialValues, ClassForm } from "./ClassForm";
 import { classSchema } from "./classSchema";
 import { Class } from "../../../services/class";
 import { CLASS } from "../../../helpers/route-constant";
+import { SessionContext } from "../../../context/session";
+import { roleById, role } from "../../../helpers/constants";
 import { useStyles } from "./useStyles";
 
 export const ClassNew = () => {
   const classes = useStyles();
   const slugify = require("slugify");
   const { push } = useHistory();
+  const { user } = useContext(SessionContext);
 
   const handleSubmit = async ({ name }, { setErrors }) => {
     const slug = slugify(name, { remove: /[*+~.()'"!:@/\\]/g, lower: true });
-    const jsonClass = { name, slug, active: false };
+    const active =
+      roleById[user.role] === role.ADMIN ? { active: true } : { active: false };
+
+    const jsonClass = { name, slug, ...active };
 
     const data = await Class.new(jsonClass);
     const jsonData = await data.json();

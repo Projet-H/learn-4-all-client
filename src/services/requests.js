@@ -13,7 +13,7 @@ export const requests = {
       method: "PUT",
       body: JSON.stringify(body)
     }),
-  del: url =>
+  delete: url =>
     fetch(url, {
       method: "DELETE"
     })

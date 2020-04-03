@@ -185,7 +185,7 @@ export const Routes = () => {
         )}
       />
       <Route exact path={NOTFOUND} component={NotFoundComponent} />
-      <Redirect to={NOTFOUND} />
+      {/* <Redirect to={NOTFOUND} /> */}
     </Switch>
   );
 };
