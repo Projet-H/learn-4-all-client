@@ -21,7 +21,7 @@ export const IssuesIndex = () => {
   const degree = pathname.split("/")[1];
   const subject = pathname.split("/")[2];
   const { push } = useHistory();
-  const { socket, user } = useContext(SessionContext);
+  const { socket } = useContext(SessionContext);
 
   const handleClick = id => {
     parseInt(Object.keys(open)[0]) === id
@@ -29,16 +29,24 @@ export const IssuesIndex = () => {
       : setOpen({ [id]: true });
   };
 
-  const handleBegin = e => {
+  const handleBegin = (e, idConversation) => {
     e.stopPropagation();
-    console.log("here");
 
     socket.emit("join-conversation", {
-      id: user.id
+      id: idConversation
     });
 
-    socket.on("join-conversation-response", param => console.log(param));
-    socket.on("user-joined-conversation", param => console.log(param));
+    socket.on("join-conversation-response", () =>
+      socket.emit("get-conversations", {
+        degreeSlug: degree,
+        subjectSlug: subject
+      })
+    );
+  };
+
+  const handleChat = (e, idConversation) => {
+    e.stopPropagation();
+    push(`issues/${idConversation}`);
   };
 
   useEffect(() => {
@@ -48,11 +56,8 @@ export const IssuesIndex = () => {
         subjectSlug: subject
       });
       socket.on("get-conversations-response", param => setData(param));
-      socket.on("create-conversation-response", () =>
-        console.log("create appli")
-      );
     }
-  });
+  }, [degree, socket, subject]);
 
   return (
     <div className={classes.root}>
@@ -91,15 +96,34 @@ export const IssuesIndex = () => {
                     >{`Créé par : ${value.student.firstName}`}</span>
                   </Typography>
                   <Can I="join" a="Issues">
-                    {() => (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={e => handleBegin(e)}
-                      >
-                        Démarrer
-                      </Button>
-                    )}
+                    {() =>
+                      value.teacher ? (
+                        ""
+                      ) : (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={e => handleBegin(e, value.id)}
+                        >
+                          Démarrer
+                        </Button>
+                      )
+                    }
+                  </Can>
+                  <Can I="tchat" a="Issues">
+                    {() =>
+                      value.teacher ? (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={e => handleChat(e, value.id)}
+                        >
+                          Tchat
+                        </Button>
+                      ) : (
+                        ""
+                      )
+                    }
                   </Can>
                   <div className={classes.expand}>
                     {open[value.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}

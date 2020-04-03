@@ -28,8 +28,7 @@ export const SubjectIndex = () => {
     const fetchData = async () => {
       const response = await Subject.list(degree);
       const dataJson = await response.json();
-      const data = dataJson ? dataJson.subjects : dataJson;
-      return setData(data);
+      return setData(dataJson);
     };
     fetchData();
   }, [degree]);

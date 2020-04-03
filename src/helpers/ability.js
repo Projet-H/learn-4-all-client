@@ -31,6 +31,8 @@ export const defineRulesFor = user => {
       can("add", "Subject", { userId: user.id });
       can("view", "Issues", { userId: user.id });
       can("join", "Issues", { userId: user.id });
+      can("tchat", "Issues", { userId: user.id });
+      can("view", "Conversation", { userId: user.id });
       break;
     case "STUDENT":
       can("view", "Class", { userId: user.id });
@@ -39,6 +41,8 @@ export const defineRulesFor = user => {
       can("add", "Subject", { userId: user.id });
       can("view", "Issues", { userId: user.id });
       can("add", "Issues", { userId: user.id });
+      can("tchat", "Issues", { userId: user.id });
+      can("view", "Conversation", { userId: user.id });
       break;
     default:
       can("view", "Profil", { userId: user.id });

@@ -5,6 +5,7 @@ export const SUBJECT = "/:slug/subject";
 export const SUBJECTNEW = "/:slug/subject/new";
 export const ISSUES = "/:slug/:slug/issues";
 export const ISSUESNEW = "/:slug/:slug/issues/new";
+export const CONVERSATION = "/:slug/:slug/issues/:id";
 export const ACCOUNT = "/account";
 export const REGISTER = "/register";
 export const LOGIN = "/login";

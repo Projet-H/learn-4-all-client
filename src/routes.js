@@ -12,6 +12,7 @@ import { SubjectIndex as Subject } from "./components/subject/";
 import { SubjectNew } from "./components/subject/new/Subject";
 import { IssuesIndex as Issues } from "./components/issues/";
 import { IssuesNew } from "./components/issues/new/Issues";
+import { Conversation } from "./components/issues/Conversation";
 import { Profil } from "./components/profil/Profil";
 import { Degree as ValidateDegree } from "./components/validate/Degree";
 import { Subject as ValidateSubject } from "./components/validate/Subject";
@@ -27,7 +28,8 @@ import {
   PROFIL,
   VALIDATECLASS,
   VALIDATESUBJECT,
-  HOME
+  HOME,
+  CONVERSATION
 } from "./helpers/route-constant";
 
 import { withTitleAnimation } from "./helpers/withTitle";
@@ -81,6 +83,10 @@ export const Routes = () => {
   const IssuesNewComponent = withTitleAnimation({
     component: IssuesNew,
     title: "Création d'un problème"
+  });
+  const ConversationComponent = withTitleAnimation({
+    component: Conversation,
+    title: "Discussion"
   });
   const NotFoundComponent = withTitleAnimation({
     component: NotFound,
@@ -154,6 +160,15 @@ export const Routes = () => {
         component={props => (
           <Can I="add" a="Issues">
             {() => <IssuesNewComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={CONVERSATION}
+        component={props => (
+          <Can I="view" a="Conversation">
+            {() => <ConversationComponent {...props} />}
           </Can>
         )}
       />
