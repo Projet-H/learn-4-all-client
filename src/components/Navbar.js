@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -6,13 +6,15 @@ import {
   Toolbar,
   Typography,
   Button,
-  IconButton
+  IconButton,
+  Drawer
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import * as Cookies from "js-cookie";
 
 import { SessionContext } from "../context/session";
 import { LOGIN, CLASS } from "../helpers/route-constant";
+import { SideList } from "./sidelist/SideList";
 import { Auth } from "../services/auth";
 
 const useStyles = makeStyles(theme => ({
@@ -26,6 +28,11 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: "#FFF",
     cursor: "pointer"
+  },
+  drawer: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column"
   }
 }));
 
@@ -33,6 +40,7 @@ export const Navbar = () => {
   const classes = useStyles();
   const { setSession, setUser } = useContext(SessionContext);
   const { push } = useHistory();
+  const [drawer, setDrawer] = useState({ open: false });
 
   const handleLogout = async () => {
     await Auth.logout();
@@ -44,6 +52,16 @@ export const Navbar = () => {
     return push(LOGIN);
   };
 
+  const toggleDrawer = open => event => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    )
+      return;
+
+    setDrawer({ ...drawer, open });
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -52,7 +70,8 @@ export const Navbar = () => {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="menu"
+            aria-label="open drawer"
+            onClick={toggleDrawer(true)}
           >
             <MenuIcon />
           </IconButton>
@@ -68,6 +87,16 @@ export const Navbar = () => {
           </Button>
         </Toolbar>
       </AppBar>
+      <Drawer open={drawer.open} onClose={toggleDrawer(false)}>
+        <div
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
+          className={classes.drawer}
+        >
+          <SideList />
+        </div>
+      </Drawer>
     </div>
   );
 };

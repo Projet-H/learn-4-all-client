@@ -18,5 +18,7 @@ export const SessionContext = createContext({
   session: { auth: false, token: "" },
   setSession: () => {},
   user: {},
-  setUser: () => {}
+  setUser: () => {},
+  socket: {},
+  setSocket: () => {}
 });

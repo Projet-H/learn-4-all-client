@@ -1,5 +1,14 @@
-import React from "react";
-import { Button, TextField, Grid } from "@material-ui/core";
+import React, { useRef } from "react";
+import {
+  Button,
+  TextField,
+  Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from "@material-ui/core";
+import { School as SchoolIcon } from "@material-ui/icons";
 
 import { useStyles } from "./useStyles";
 
@@ -8,7 +17,8 @@ export const initialValues = {
   password: "",
   firstname: "",
   lastname: "",
-  confirmPassword: ""
+  confirmPassword: "",
+  level: ""
 };
 
 export const RegisterForm = ({
@@ -22,6 +32,7 @@ export const RegisterForm = ({
   handleBlur
 }) => {
   const classes = useStyles();
+  const inputLabel = useRef(null);
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
@@ -107,6 +118,43 @@ export const RegisterForm = ({
             }
             helperText={touched.confirmPassword && errors.confirmPassword}
           ></TextField>
+        </Grid>
+        <Grid item xs={12} className={classes.iconSchool}>
+          <SchoolIcon />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl variant="outlined" className={classes.field}>
+            <InputLabel
+              ref={inputLabel}
+              id="level-label"
+              className={classes.formLabel}
+            >
+              Niveau d'étude *
+            </InputLabel>
+            <Select
+              labelId="level-label"
+              name="level"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={classes.formSelect}
+            >
+              <MenuItem value="primaire">Primaire</MenuItem>
+              <MenuItem value="college">Collège</MenuItem>
+              <MenuItem value="lycee">Lycée</MenuItem>
+              <MenuItem value="lycee">École supérieur</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          {errors.level ? (
+            <p>
+              Learn4all accueil une communauté passant un diplôme en fin
+              d'année. <br />
+              Vous n'êtes pas autorisé à vous inscrire.
+            </p>
+          ) : (
+            ""
+          )}
         </Grid>
       </Grid>
       <Button

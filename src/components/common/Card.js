@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 import { useHistory } from "react-router-dom";
-import { makeStyles, Grid, Button } from "@material-ui/core";
+import { makeStyles, Grid, Button, Icon } from "@material-ui/core";
 
 const useStyles = makeStyles({
   list: {
@@ -61,8 +61,13 @@ export const Card = ({ value, mainSubtitle, route }) => {
         <div className={classes.subtitle}>Date de création</div>
       </Grid>
       <Grid item xs={6} sm={2} className={classes.element}>
-        <Button variant="contained" color="primary" onClick={() => push(route)}>
-          Voir
+        <Button
+          variant="outlined"
+          color="secondary"
+          endIcon={<Icon>send</Icon>}
+          onClick={() => push(route)}
+        >
+          Accéder
         </Button>
       </Grid>
     </Grid>
