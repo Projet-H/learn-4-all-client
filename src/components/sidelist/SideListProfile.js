@@ -6,10 +6,7 @@ const useStyles = makeStyles(theme => ({
     padding: 15,
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    [theme.breakpoints.down("sm")]: {
-      display: "none"
-    }
+    alignItems: "center"
   },
   avatar: { marginBottom: 15 },
   title: { color: "rgba(0,0,0,.87)", fontWeight: "500", padding: 0, margin: 0 },

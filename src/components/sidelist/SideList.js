@@ -29,8 +29,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   title: {
-    padding: "20px",
-    [theme.breakpoints.down("sm")]: { display: "none" }
+    padding: "20px"
   },
   link: {
     color: "inherit",

@@ -60,7 +60,6 @@ export const ClassIndex = () => {
                   <Card
                     key={index}
                     value={value}
-                    mainSubtitle="Nombre de matières"
                     route={`${value.slug}/subject`}
                   />
                 ))}

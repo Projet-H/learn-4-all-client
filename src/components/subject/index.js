@@ -62,7 +62,6 @@ export const SubjectIndex = () => {
                   <Card
                     key={index}
                     value={value}
-                    mainSubtitle="Nombre de problématiques"
                     route={`${value.slug}/issues`}
                   />
                 ))}
