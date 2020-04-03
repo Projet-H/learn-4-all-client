@@ -21,6 +21,8 @@ export const Conversation = () => {
       content: message,
       conversationId: endpoint
     });
+
+    socket.on("sent-message", param => console.log(param));
   };
 
   useEffect(() => {
@@ -29,7 +31,6 @@ export const Conversation = () => {
         id: endpoint
       });
       socket.on("get-conversation-response", param => setData(param));
-      socket.on("sent-message", param => console.log(param));
     }
   }, [endpoint, socket]);
 
