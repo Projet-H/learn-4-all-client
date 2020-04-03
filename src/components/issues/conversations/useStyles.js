@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles({
+import { deepPurple } from "@material-ui/core/colors";
+
+export const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     height: "100%",
@@ -17,11 +19,21 @@ export const useStyles = makeStyles({
   bubbleMine: {
     fontSize: 14,
     display: "flex",
-    justifyContent: "flex-end"
+    flexDirection: "row-reverse",
+    alignItems: "center"
   },
   bubbleOther: {
     fontSize: 14,
-    display: "flex"
+    display: "flex",
+    alignItems: "center"
+  },
+  mineAvatar: {
+    margin: 12,
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500]
+  },
+  avatar: {
+    margin: 12
   },
   mine: {
     backgroundColor: "#007aff",
@@ -57,4 +69,4 @@ export const useStyles = makeStyles({
   button: {
     borderRadius: 0
   }
-});
+}));

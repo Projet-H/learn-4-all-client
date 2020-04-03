@@ -6,6 +6,7 @@ import { SessionContext } from "../../../context/session";
 import { initialValues, ConversationForm } from "./ConversationForm";
 import { useStyles } from "./useStyles";
 import { isEmpty } from "../../../helpers/utility";
+import { Avatar } from "@material-ui/core";
 
 export const Conversation = () => {
   const classes = useStyles();
@@ -52,6 +53,13 @@ export const Conversation = () => {
                 : classes.bubbleOther
             }
           >
+            <Avatar
+              className={
+                user.id === value.user.id ? classes.mineAvatar : classes.avatar
+              }
+            >
+              {value.user.firstName.charAt(0)}
+            </Avatar>
             <div
               className={
                 user.id === value.user.id ? classes.mine : classes.other
