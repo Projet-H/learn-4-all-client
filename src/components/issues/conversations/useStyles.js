@@ -26,7 +26,7 @@ export const useStyles = makeStyles({
   mine: {
     backgroundColor: "#007aff",
     color: "#FFF",
-    margin: "10px 0 10px 0",
+    margin: "7px 0 7px 0",
     borderRadius: 20,
     padding: "10px 15px",
     maxWidth: "75%"
@@ -34,7 +34,7 @@ export const useStyles = makeStyles({
   other: {
     backgroundColor: "#f4f4f8",
     color: "#000",
-    margin: "10px 0 10px 0",
+    margin: "7px 0 7px 0",
     borderRadius: 20,
     padding: "10px 15px",
     maxWidth: "75%"
