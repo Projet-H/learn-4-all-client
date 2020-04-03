@@ -37,13 +37,17 @@ export const Conversation = () => {
   useEffect(() => {
     if (!isEmpty(socket)) {
       socket.on("get-conversation-response", param => setData(param));
-      socket.on("sent-message", param => setData([...data, param]));
+      socket.on("sent-message", param => {
+        setData([...data, param]);
+        const scrollDiv = document.getElementById("conversation");
+        scrollDiv.scrollTop = scrollDiv.scrollHeight;
+      });
     }
   }, [data, endpoint, socket]);
 
   return data ? (
     <div className={classes.root}>
-      <div className={classes.interface}>
+      <div className={classes.interface} id="conversation">
         {data.map(value => (
           <div
             key={value.id}
