@@ -15,24 +15,30 @@ export const Conversation = () => {
   const [data, setData] = useState([]);
 
   const handleSubmit = ({ message }, { resetForm }) => {
-    resetForm({});
-
     socket.emit("send-message", {
       content: message,
       conversationId: endpoint
     });
-
-    socket.on("sent-message", param => console.log(param));
+    resetForm({});
   };
 
   useEffect(() => {
     if (!isEmpty(socket)) {
-      socket.emit("get-conversation", {
-        id: endpoint
+      socket.emit("join-conversation", {
+        conversationId: endpoint
       });
-      socket.on("get-conversation-response", param => setData(param));
+      socket.emit("get-conversation", {
+        conversationId: endpoint
+      });
     }
   }, [endpoint, socket]);
+
+  useEffect(() => {
+    if (!isEmpty(socket)) {
+      socket.on("get-conversation-response", param => setData(param));
+      socket.on("sent-message", param => setData([...data, param]));
+    }
+  }, [data, endpoint, socket]);
 
   return data ? (
     <div className={classes.root}>

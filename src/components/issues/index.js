@@ -36,12 +36,7 @@ export const IssuesIndex = () => {
       conversationId: idConversation
     });
 
-    socket.on("join-conversation-response", () =>
-      socket.emit("get-conversations", {
-        degreeSlug: degree,
-        subjectSlug: subject
-      })
-    );
+    push(`issues/${idConversation}`);
   };
 
   const handleChat = (e, idConversation) => {
@@ -105,7 +100,7 @@ export const IssuesIndex = () => {
                           color="primary"
                           onClick={e => handleBegin(e, value.id)}
                         >
-                          Démarrer
+                          Prendre en charge
                         </Button>
                       )
                     }
