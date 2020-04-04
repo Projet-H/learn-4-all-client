@@ -9,36 +9,36 @@ const useStyles = makeStyles({
     flexGrow: 1,
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 16,
+    padding: 10,
     boxShadow: "0 0 0 1px rgba(63,63,68,0.05), 0 1px 3px 0 rgba(63,63,68,0.15)",
     backgroundColor: "#FFF",
     borderRadius: 4,
-    marginBottom: 16
+    marginBottom: 16,
   },
   element: {
-    padding: 8
+    padding: 8,
   },
   mainTitle: {
     color: "#263238",
     fontSize: 17,
     fontWeight: 600,
     lineHeight: "20px",
-    letterSpacing: "-0.05px"
+    letterSpacing: "-0.05px",
   },
   title: {
     color: "#263238",
     fontSize: 15,
     fontWeight: 600,
     lineHeight: "20px",
-    letterSpacing: "-0.05px"
+    letterSpacing: "-0.05px",
   },
   subtitle: {
     color: "#546e7a",
     fontSize: 13,
     fontWeight: 400,
     lineHeight: "18px",
-    letterSpacing: "-0.04px"
-  }
+    letterSpacing: "-0.04px",
+  },
 });
 
 export const Card = ({ value, route }) => {

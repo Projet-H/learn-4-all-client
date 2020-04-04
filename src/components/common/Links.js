@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     height: 65,
   },
   activated: {
-    borderRight: "solid 3px #38c9ae",
+    borderRight: "solid 3px #2196f3",
     height: 65,
   },
 });

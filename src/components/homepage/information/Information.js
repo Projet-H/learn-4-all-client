@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: 350,
-    backgroundColor: "#000",
+    backgroundColor: "#2196f3",
     color: "#FFF",
   },
   text: {
