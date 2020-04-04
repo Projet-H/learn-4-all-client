@@ -63,7 +63,7 @@ export const Services = () => {
               </h3>
               <p className={classes.subtitle}>
                 Un bénévole va se mettre en relation avec moi pour{" "}
-                <b>répondre à ma problèmatique</b> et je pourrais{" "}
+                <b>répondre à ma problématique</b> et je pourrais{" "}
                 <b>échanger avec lui</b>.
               </p>
             </div>
