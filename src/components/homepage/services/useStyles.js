@@ -70,8 +70,8 @@ const useStyles = makeStyles({
     padding: "8px 14px",
     color: "#fff",
     fontSize: 20,
-    backgroundColor: "#4C6AAB",
-    backgroundImage: "linear-gradient( -45deg, #005eff, #4C6AAB )",
+    backgroundColor: "#2196f3",
+    backgroundImage: "linear-gradient( -45deg, #005eff, #2196f3 )",
   },
 });
 

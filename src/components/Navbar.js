@@ -13,11 +13,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import * as Cookies from "js-cookie";
 
 import { SessionContext } from "../context/session";
-import { LOGIN, CLASS } from "../helpers/route-constant";
+import { LOGIN, HOME } from "../helpers/route-constant";
 import { SideList } from "./sidelist/SideList";
 import { Auth } from "../services/auth";
 
 const useStyles = makeStyles((theme) => ({
+  appbar: {
+    backgroundColor: "#2196f3",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -61,7 +64,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appbar}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -75,7 +78,7 @@ export const Navbar = () => {
           <Typography
             variant="h6"
             className={classes.title}
-            onClick={() => push(CLASS)}
+            onClick={() => push(HOME)}
           >
             Learn 4 all
           </Typography>
