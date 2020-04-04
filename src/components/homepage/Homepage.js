@@ -20,7 +20,7 @@ export const Homepage = () => {
         <article className={classes.hero}>
           <h1 className={classes.title}>
             Application d'entraide <br />
-            pour <b>réussir ses examens</b>
+            pour <b>la réussite de ses examens</b>
           </h1>
           <h3 className={classes.subtitle}>
             Vous passez un examen en fin d'année et vous rencontrez des
