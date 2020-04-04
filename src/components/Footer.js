@@ -7,7 +7,7 @@ export const Footer = () => {
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="6">
-            <h5 className="title">Lean for all</h5>
+            <h5 className="title">Learn for all</h5>
             <p>Application d'entraide entre élève et intervenant.</p>
           </MDBCol>
           <MDBCol md="6">
