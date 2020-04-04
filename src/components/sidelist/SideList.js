@@ -6,7 +6,7 @@ import {
   Create as CreateIcon,
   SelectAll as SelectAllIcon,
   Gavel as GavelIcon,
-  BorderClear as BorderClearIcon
+  BorderClear as BorderClearIcon,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -16,25 +16,25 @@ import {
   PROFIL,
   HOME,
   VALIDATECLASS,
-  VALIDATESUBJECT
+  VALIDATESUBJECT,
 } from "../../helpers/route-constant";
 import { Links } from "../common/Links";
 import { SideListProfile } from "./SideListProfile";
 import { SessionContext } from "../../context/session";
 import { Can } from "../../helpers/Can";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   list: {
-    width: 250,
-    flexGrow: 1
+    minWidth: 250,
+    flexGrow: 1,
   },
   title: {
-    padding: "20px"
+    padding: "20px",
   },
   link: {
     color: "inherit",
-    textDecoration: "inherit"
-  }
+    textDecoration: "inherit",
+  },
 }));
 
 export const SideList = () => {
