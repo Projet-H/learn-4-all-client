@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import io from "socket.io-client";
 
 import { getSessionCookie } from "./context/session";
-import { Home } from "./components/Home";
+import { Homepage } from "./components/homepage/Homepage";
 import { NotFound } from "./components/NotFound";
 import { ClassIndex as Class } from "./components/class/";
 import { ClassNew } from "./components/class/new/Class";
@@ -57,7 +57,7 @@ export const Routes = () => {
   }, [setSocket, setUser]);
 
   const HomeComponent = withTitleAnimation({
-    component: Home,
+    component: Homepage,
     title: "Accueil",
   });
   const ClassComponent = withTitleAnimation({

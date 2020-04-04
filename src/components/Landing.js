@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { Login } from "./login/Login";
 import { Register } from "./register/Register";
 import { NotFound } from "./NotFound";
-import { Home } from "./Home";
+import { Homepage } from "./homepage/Homepage";
 
 import { NOTFOUND, LOGIN, REGISTER, HOME } from "../helpers/route-constant";
 import { withTitle } from "../helpers/withTitle";
@@ -20,7 +20,7 @@ export const Landing = () => {
     title: "404 - Not Found",
   });
   const HomeComponent = withTitle({
-    component: Home,
+    component: Homepage,
     title: "Accueil",
   });
 

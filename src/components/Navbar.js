@@ -7,7 +7,7 @@ import {
   Typography,
   Button,
   IconButton,
-  Drawer
+  Drawer,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import * as Cookies from "js-cookie";
@@ -17,23 +17,20 @@ import { LOGIN, CLASS } from "../helpers/route-constant";
 import { SideList } from "./sidelist/SideList";
 import { Auth } from "../services/auth";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
+const useStyles = makeStyles((theme) => ({
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
     color: "#FFF",
-    cursor: "pointer"
+    cursor: "pointer",
   },
   drawer: {
     height: "100%",
     display: "flex",
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  },
 }));
 
 export const Navbar = () => {
@@ -52,7 +49,7 @@ export const Navbar = () => {
     return push(LOGIN);
   };
 
-  const toggleDrawer = open => event => {
+  const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -63,7 +60,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -97,6 +94,6 @@ export const Navbar = () => {
           <SideList />
         </div>
       </Drawer>
-    </div>
+    </>
   );
 };
