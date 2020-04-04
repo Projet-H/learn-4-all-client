@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-import landingWallpaper from "../../assets/images/home.jpg";
+import landingWallpaper from "../../assets/images/home.jfif";
 
 export const useStyles = makeStyles({
   rootAuth: {
@@ -18,7 +18,7 @@ export const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    backgroundColor: "rgba(0,0,0, 0.9)",
+    backgroundColor: "rgba(0,0,0, 0.85)",
     padding: 25,
   },
   title: {
