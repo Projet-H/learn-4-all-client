@@ -10,18 +10,18 @@ import { NOTFOUND, LOGIN, REGISTER, HOME } from "../helpers/route-constant";
 import { withTitle } from "../helpers/withTitle";
 
 export const Landing = () => {
-  const LoginComponent = withTitle({ component: Login, title: "Login" });
+  const LoginComponent = withTitle({ component: Login, title: "Se connecter" });
   const RegisterComponent = withTitle({
     component: Register,
-    title: "Inscription"
+    title: "Inscription",
   });
   const NotFoundComponent = withTitle({
     component: NotFound,
-    title: "404 - Not Found"
+    title: "404 - Not Found",
   });
   const HomeComponent = withTitle({
     component: Home,
-    title: "Accueil"
+    title: "Accueil",
   });
 
   return (

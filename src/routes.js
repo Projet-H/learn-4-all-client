@@ -29,7 +29,7 @@ import {
   VALIDATECLASS,
   VALIDATESUBJECT,
   HOME,
-  CONVERSATION
+  CONVERSATION,
 } from "./helpers/route-constant";
 
 import { withTitleAnimation } from "./helpers/withTitle";
@@ -47,9 +47,9 @@ export const Routes = () => {
       const dataJson = await response.json();
       setUser({ ...dataJson, password: "" });
 
-      const socket = io.connect("http://localhost:3001/", {
+      const socket = io.connect(process.env.REACT_APP_SOCKET, {
         query: { token: getSessionCookie().token },
-        forceNew: true
+        forceNew: true,
       });
       setSocket(socket);
     };
@@ -58,51 +58,51 @@ export const Routes = () => {
 
   const HomeComponent = withTitleAnimation({
     component: Home,
-    title: "Accueil"
+    title: "Accueil",
   });
   const ClassComponent = withTitleAnimation({
     component: Class,
-    title: "Listes des classes"
+    title: "Listes des classes",
   });
   const ClassNewComponent = withTitleAnimation({
     component: ClassNew,
-    title: "Création d'une classe"
+    title: "Création d'une classe",
   });
   const SubjectComponent = withTitleAnimation({
     component: Subject,
-    title: "Liste des matières"
+    title: "Liste des matières",
   });
   const SubjectNewComponent = withTitleAnimation({
     component: SubjectNew,
-    title: "Création des matières"
+    title: "Création des matières",
   });
   const IssuesComponent = withTitleAnimation({
     component: Issues,
-    title: "Liste des problèmes"
+    title: "Liste des problèmes",
   });
   const IssuesNewComponent = withTitleAnimation({
     component: IssuesNew,
-    title: "Création d'un problème"
+    title: "Création d'un problème",
   });
   const ConversationComponent = withTitleAnimation({
     component: Conversation,
-    title: "Discussion"
+    title: "Discussion",
   });
   const NotFoundComponent = withTitleAnimation({
     component: NotFound,
-    title: "404 - Not Found"
+    title: "404 - Not Found",
   });
   const ProfilComponent = withTitleAnimation({
     component: Profil,
-    title: "Choix du rôle"
+    title: "Choix du rôle",
   });
   const ValidateClassComponent = withTitleAnimation({
     component: ValidateDegree,
-    title: "Gestion des classes"
+    title: "Gestion des classes",
   });
   const ValidateSubjectComponent = withTitleAnimation({
     component: ValidateSubject,
-    title: "Gestion des matières"
+    title: "Gestion des matières",
   });
 
   return (
@@ -112,7 +112,7 @@ export const Routes = () => {
       <Route
         exact
         path={CLASS}
-        component={props => (
+        component={(props) => (
           <Can I="view" a="Class">
             {() => <ClassComponent {...props} />}
           </Can>
@@ -121,7 +121,7 @@ export const Routes = () => {
       <Route
         exact
         path={CLASSNEW}
-        component={props => (
+        component={(props) => (
           <Can I="add" a="Class">
             {() => <ClassNewComponent {...props} />}
           </Can>
@@ -130,7 +130,7 @@ export const Routes = () => {
       <Route
         exact
         path={SUBJECT}
-        component={props => (
+        component={(props) => (
           <Can I="view" a="Subject">
             {() => <SubjectComponent {...props} />}
           </Can>
@@ -139,7 +139,7 @@ export const Routes = () => {
       <Route
         exact
         path={SUBJECTNEW}
-        component={props => (
+        component={(props) => (
           <Can I="add" a="Subject">
             {() => <SubjectNewComponent {...props} />}
           </Can>
@@ -148,7 +148,7 @@ export const Routes = () => {
       <Route
         exact
         path={ISSUES}
-        component={props => (
+        component={(props) => (
           <Can I="view" a="Issues">
             {() => <IssuesComponent {...props} />}
           </Can>
@@ -157,7 +157,7 @@ export const Routes = () => {
       <Route
         exact
         path={ISSUESNEW}
-        component={props => (
+        component={(props) => (
           <Can I="add" a="Issues">
             {() => <IssuesNewComponent {...props} />}
           </Can>
@@ -166,7 +166,7 @@ export const Routes = () => {
       <Route
         exact
         path={CONVERSATION}
-        component={props => (
+        component={(props) => (
           <Can I="view" a="Conversation">
             {() => <ConversationComponent {...props} />}
           </Can>
@@ -175,7 +175,7 @@ export const Routes = () => {
       <Route
         exact
         path={PROFIL}
-        component={props => (
+        component={(props) => (
           <Can I="view" a="Profil">
             {() => <ProfilComponent {...props} />}
           </Can>
@@ -184,7 +184,7 @@ export const Routes = () => {
       <Route
         exact
         path={VALIDATECLASS}
-        component={props => (
+        component={(props) => (
           <Can I="validate" a="Degree">
             {() => <ValidateClassComponent {...props} />}
           </Can>
@@ -193,7 +193,7 @@ export const Routes = () => {
       <Route
         exact
         path={VALIDATESUBJECT}
-        component={props => (
+        component={(props) => (
           <Can I="validate" a="Subject">
             {() => <ValidateSubjectComponent {...props} />}
           </Can>
