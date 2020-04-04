@@ -6,7 +6,7 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import { School as SchoolIcon } from "@material-ui/icons";
 
@@ -18,7 +18,7 @@ export const initialValues = {
   firstname: "",
   lastname: "",
   confirmPassword: "",
-  level: ""
+  level: "",
 };
 
 export const RegisterForm = ({
@@ -29,7 +29,7 @@ export const RegisterForm = ({
   errors,
   isValid,
   isSubmitting,
-  handleBlur
+  handleBlur,
 }) => {
   const classes = useStyles();
   const inputLabel = useRef(null);
@@ -147,7 +147,7 @@ export const RegisterForm = ({
         </Grid>
         <Grid item xs={12}>
           {errors.level ? (
-            <p>
+            <p className={classes.errorLevel}>
               Learn4all accueil une communauté passant un diplôme en fin
               d'année. <br />
               Vous n'êtes pas autorisé à vous inscrire.

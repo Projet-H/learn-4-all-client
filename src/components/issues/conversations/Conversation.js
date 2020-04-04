@@ -18,7 +18,7 @@ export const Conversation = () => {
   const handleSubmit = ({ message }, { resetForm }) => {
     socket.emit("send-message", {
       content: message,
-      conversationId: endpoint
+      conversationId: parseInt(endpoint),
     });
     resetForm({});
   };
@@ -26,29 +26,29 @@ export const Conversation = () => {
   useEffect(() => {
     if (!isEmpty(socket)) {
       socket.emit("join-conversation", {
-        conversationId: endpoint
+        conversationId: parseInt(endpoint),
       });
       socket.emit("get-conversation", {
-        conversationId: endpoint
+        conversationId: parseInt(endpoint),
       });
     }
   }, [endpoint, socket]);
 
   useEffect(() => {
     if (!isEmpty(socket)) {
-      socket.on("get-conversation-response", param => setData(param));
-      socket.on("sent-message", param => {
+      socket.on("get-conversation-response", (param) => setData(param));
+      socket.on("sent-message", (param) => {
         setData([...data, param]);
         const scrollDiv = document.getElementById("conversation");
         scrollDiv.scrollTop = scrollDiv.scrollHeight;
       });
     }
-  }, [data, endpoint, socket]);
+  }, [data, socket]);
 
   return data ? (
     <div className={classes.root}>
       <div className={classes.interface} id="conversation">
-        {data.map(value => (
+        {data.map((value) => (
           <div
             key={value.id}
             className={

@@ -4,7 +4,7 @@ import { Button, Typography } from "@material-ui/core";
 import {
   BugReport as BugReportIcon,
   ExpandMore as ExpandMoreIcon,
-  ExpandLess as ExpandLessIcon
+  ExpandLess as ExpandLessIcon,
 } from "@material-ui/icons";
 
 import noDataPicture from "../../assets/images/no-data.svg";
@@ -23,7 +23,7 @@ export const IssuesIndex = () => {
   const { push } = useHistory();
   const { socket } = useContext(SessionContext);
 
-  const handleClick = id => {
+  const handleClick = (id) => {
     parseInt(Object.keys(open)[0]) === id
       ? setOpen({})
       : setOpen({ [id]: true });
@@ -33,7 +33,7 @@ export const IssuesIndex = () => {
     e.stopPropagation();
 
     socket.emit("join-conversation", {
-      conversationId: idConversation
+      conversationId: parseInt(idConversation),
     });
 
     push(`issues/${idConversation}`);
@@ -48,9 +48,9 @@ export const IssuesIndex = () => {
     if (!isEmpty(socket)) {
       socket.emit("get-conversations", {
         degreeSlug: degree,
-        subjectSlug: subject
+        subjectSlug: subject,
       });
-      socket.on("get-conversations-response", param => setData(param));
+      socket.on("get-conversations-response", (param) => setData(param));
     }
   }, [degree, socket, subject]);
 
@@ -75,7 +75,7 @@ export const IssuesIndex = () => {
         </Can>
         {!isEmpty(data) ? (
           <div className={classes.list}>
-            {data.map(value => (
+            {data.map((value) => (
               <div key={value.id}>
                 <div
                   className={classes.element}
@@ -98,7 +98,7 @@ export const IssuesIndex = () => {
                         <Button
                           variant="contained"
                           color="primary"
-                          onClick={e => handleBegin(e, value.id)}
+                          onClick={(e) => handleBegin(e, value.id)}
                         >
                           Prendre en charge
                         </Button>
@@ -111,7 +111,7 @@ export const IssuesIndex = () => {
                         <Button
                           variant="contained"
                           color="primary"
-                          onClick={e => handleChat(e, value.id)}
+                          onClick={(e) => handleChat(e, value.id)}
                         >
                           Tchat
                         </Button>
