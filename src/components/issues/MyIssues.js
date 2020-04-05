@@ -86,10 +86,8 @@ export const MyIssues = () => {
   return (
     <div className={classes.root}>
       <div>
-        <h2 className={classes.subtitle}>Catégorie</h2>
-        <h1 className={classes.title}>
-          Gestion des classes en cours de traitement
-        </h1>
+        <h2 className={classes.subtitle}>Problématique</h2>
+        <h1 className={classes.title}>Liste de mes problémes</h1>
       </div>
       <div className={classes.table}>
         <MTable
