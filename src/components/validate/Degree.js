@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: 1220,
     padding: 15,
-    margin: "0 auto"
+    margin: "0 auto",
   },
   title: {
     color: "#263238",
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     fontWeight: 500,
     lineHeight: "28px",
     letterSpacing: "-0.06px",
-    marginTop: 0
+    marginTop: 0,
   },
   subtitle: {
     color: "#546e7a",
@@ -27,8 +27,8 @@ const useStyles = makeStyles({
     fontWeight: 500,
     lineHeight: "13px",
     letterSpacing: "0.33px",
-    textTransform: "uppercase"
-  }
+    textTransform: "uppercase",
+  },
 });
 
 export const Degree = () => {
@@ -41,22 +41,22 @@ export const Degree = () => {
     columns: [
       { title: "Titre", field: "name" },
       { title: "Slug", field: "slug" },
-      { title: "Date de création", field: "createDateTime" }
+      { title: "Date de création", field: "createDateTime" },
     ],
     options: {
       sorting: false,
       pageSizeOptions: [10, 15, 20],
       pageSize: 10,
       search: false,
-      actionsColumnIndex: -1
-    }
+      actionsColumnIndex: -1,
+    },
   };
 
-  const active = async rowData => {
+  const active = async (rowData) => {
     const data = await Class.active(rowData.id);
     const jsonData = await data.json();
     if (data.status !== 200) {
-      fail("La classe n'a pas été validé; Vueillez réessayer ultérieurement.");
+      fail("La classe n'a pas été validé; Veuillez réessayer ultérieurement.");
       console.log("error", jsonData);
     } else {
       success("La classe a été validé.");
@@ -64,12 +64,13 @@ export const Degree = () => {
     }
   };
 
-  const remove = async rowData => {
+  const remove = async (rowData) => {
     const data = await Class.remove(rowData.id);
     const jsonData = await data.json();
-    console.log(data);
     if (data.status !== 200) {
-      fail("La classe n'a pas été validé; Vueillez réessayer ultérieurement.");
+      fail(
+        "La classe n'a pas été supprimé; Veuillez réessayer ultérieurement."
+      );
       console.log("error", jsonData);
     } else {
       success("La classe a été refusé.");
@@ -105,13 +106,13 @@ export const Degree = () => {
             {
               icon: "check",
               tooltip: "Accepter la création de la classe",
-              onClick: (event, rowData) => active(rowData)
+              onClick: (event, rowData) => active(rowData),
             },
             {
               icon: "delete",
               tooltip: "Refuser la création de la classe",
-              onClick: (event, rowData) => remove(rowData)
-            }
+              onClick: (event, rowData) => remove(rowData),
+            },
           ]}
         ></MTable>
       </div>

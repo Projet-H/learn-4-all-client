@@ -93,7 +93,13 @@ export const IssuesIndex = () => {
                   <Can I="join" a="Issues">
                     {() =>
                       value.teacher ? (
-                        ""
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={(e) => handleChat(e, value.id)}
+                        >
+                          Tchat
+                        </Button>
                       ) : (
                         <Button
                           variant="contained"
@@ -105,7 +111,7 @@ export const IssuesIndex = () => {
                       )
                     }
                   </Can>
-                  <Can I="tchat" a="Issues">
+                  <Can I="tchatWithTeacher" a="Issues">
                     {() =>
                       value.teacher ? (
                         <Button
@@ -116,7 +122,19 @@ export const IssuesIndex = () => {
                           Tchat
                         </Button>
                       ) : (
-                        ""
+                        <>
+                          <p className={classes.waiting}>
+                            En attente de la prise en charge par un intervenant
+                            ...
+                          </p>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={(e) => handleChat(e, value.id)}
+                          >
+                            Tchat
+                          </Button>
+                        </>
                       )
                     }
                   </Can>

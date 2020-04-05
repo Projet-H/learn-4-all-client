@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 
-export const MTable = props => {
+export const MTable = (props) => {
   const {
     optionTable,
     data,
@@ -10,7 +10,7 @@ export const MTable = props => {
     onOrderChange,
     onChangePage,
     onRowClick,
-    onSearchChange
+    onSearchChange,
   } = props;
   return (
     <>
@@ -31,8 +31,8 @@ export const MTable = props => {
             maxWidth: 178,
             overflow: "hidden",
             textOverflow: "ellipsis",
-            whiteSpace: "nowrap"
-          }
+            whiteSpace: "nowrap",
+          },
         }}
         localization={{
           body: {
@@ -41,13 +41,13 @@ export const MTable = props => {
             deleteTooltip: "Supprimer",
             editTooltip: "Modifier",
             filterRow: {
-              filterTooltip: "Filtre"
+              filterTooltip: "Filtre",
             },
             editRow: {
               deleteText: "Voulez-vous vraiment supprimer cette ligne ?",
               cancelTooltip: "Annuler",
-              saveTooltip: "Sauvegarder"
-            }
+              saveTooltip: "Sauvegarder",
+            },
           },
           grouping: { placeholder: "Glisser les en-têtes" },
           header: { actions: "Actions" },
@@ -62,7 +62,7 @@ export const MTable = props => {
             nextAriaLabel: "Page suivante",
             nextTooltip: "Page suivante",
             lastAriaLabel: "Dernière page",
-            lastTooltip: "Dernière page"
+            lastTooltip: "Dernière page",
           },
           toolbar: {
             addRemoveColumns: "Ajouter ou supprimer des colonnes",
@@ -73,8 +73,8 @@ export const MTable = props => {
             exportAriaLabel: "Exporter",
             exportName: "Exporter en CSV",
             searchTooltip: "Rechercher",
-            searchPlaceholder: "Rechercher"
-          }
+            searchPlaceholder: "Rechercher",
+          },
         }}
       ></MaterialTable>
     </>

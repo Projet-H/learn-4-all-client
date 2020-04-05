@@ -7,6 +7,7 @@ import {
   SelectAll as SelectAllIcon,
   Gavel as GavelIcon,
   BorderClear as BorderClearIcon,
+  MyLocation as MyLocationIcon,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -17,13 +18,14 @@ import {
   HOME,
   VALIDATECLASS,
   VALIDATESUBJECT,
+  MYISSUES,
 } from "../../helpers/route-constant";
 import { Links } from "../common/Links";
 import { SideListProfile } from "./SideListProfile";
 import { SessionContext } from "../../context/session";
 import { Can } from "../../helpers/Can";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   list: {
     minWidth: 250,
     flexGrow: 1,
@@ -35,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
     textDecoration: "inherit",
   },
-}));
+});
 
 export const SideList = () => {
   const classes = useStyles();
@@ -95,6 +97,15 @@ export const SideList = () => {
               route={VALIDATESUBJECT}
               text="Gérer les matières"
               Icon={BorderClearIcon}
+            ></Links>
+          )}
+        </Can>
+        <Can I="view" a="MyIssues">
+          {() => (
+            <Links
+              route={MYISSUES}
+              text="Mes problématiques"
+              Icon={MyLocationIcon}
             ></Links>
           )}
         </Can>

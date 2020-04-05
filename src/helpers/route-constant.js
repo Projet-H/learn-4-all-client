@@ -14,3 +14,4 @@ export const FORGOTPASSWORD = "/forgot-password";
 export const PROFIL = "/profil";
 export const VALIDATECLASS = "/admin/validate/class";
 export const VALIDATESUBJECT = "/admin/validate/subject";
+export const MYISSUES = "/myissues";

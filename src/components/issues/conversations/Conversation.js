@@ -1,12 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
 import { Formik } from "formik";
 
 import { SessionContext } from "../../../context/session";
 import { initialValues, ConversationForm } from "./ConversationForm";
 import { useStyles } from "./useStyles";
+import { NOTFOUND } from "../../../helpers/route-constant";
 import { isEmpty } from "../../../helpers/utility";
-import { Avatar } from "@material-ui/core";
 
 export const Conversation = () => {
   const classes = useStyles();
@@ -14,6 +15,7 @@ export const Conversation = () => {
   const endpoint = location.pathname.split("/").pop();
   const { socket, user } = useContext(SessionContext);
   const [data, setData] = useState([]);
+  const { push } = useHistory();
 
   const handleSubmit = ({ message }, { resetForm }) => {
     socket.emit("send-message", {
@@ -31,8 +33,11 @@ export const Conversation = () => {
       socket.emit("get-conversation", {
         conversationId: parseInt(endpoint),
       });
+      socket.on("not-authorized", () => {
+        push(NOTFOUND);
+      });
     }
-  }, [endpoint, socket]);
+  }, [endpoint, push, socket]);
 
   useEffect(() => {
     if (!isEmpty(socket)) {

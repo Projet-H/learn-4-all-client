@@ -5,7 +5,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { initialValues, IssuesForm } from "./IssuesForm";
 import { issuesSchema } from "./issuesSchema";
 import { SessionContext } from "../../../context/session";
-import { NOTFOUND } from "../../../helpers/route-constant";
+import { success, fail } from "../../common/Toast";
 import { useStyles } from "./useStyles";
 
 export const IssuesNew = () => {
@@ -21,13 +21,19 @@ export const IssuesNew = () => {
       title,
       description,
       subjectSlug: subject,
-      degreeSlug: degree
+      degreeSlug: degree,
     });
 
-    socket.on("error-create-conversation", () => push(NOTFOUND));
-    socket.on("create-conversation-response", () =>
-      push(`/${degree}/${subject}/issues`)
-    );
+    socket.on("error-create-conversation", () => {
+      fail(
+        "Votre problématique n'a pas été créée. Veuillez réessayer ultérieurement."
+      );
+      push(`/${degree}/${subject}/issues`);
+    });
+    socket.on("create-conversation-response", () => {
+      success("Votre problématique a été créée.");
+      push(`/${degree}/${subject}/issues`);
+    });
   };
 
   return (

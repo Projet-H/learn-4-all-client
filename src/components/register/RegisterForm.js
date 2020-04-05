@@ -146,15 +146,18 @@ export const RegisterForm = ({
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          {errors.level ? (
-            <p className={classes.errorLevel}>
-              Learn4all accueil une communauté passant un diplôme en fin
-              d'année. <br />
-              Vous n'êtes pas autorisé à vous inscrire.
-            </p>
-          ) : (
-            ""
-          )}
+          <>
+            {errors.error ? (
+              <span className={classes.error}>{errors.error}</span>
+            ) : (
+              ""
+            )}
+            {errors.unauthorized ? (
+              <span className={classes.error}>{errors.unauthorized}</span>
+            ) : (
+              ""
+            )}
+          </>
         </Grid>
       </Grid>
       <Button

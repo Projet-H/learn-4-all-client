@@ -42,7 +42,7 @@ export const Login = () => {
         ? push(PROFIL)
         : push(CLASS);
     } catch (err) {
-      setErrors({ [err.errors.property]: err.errors.message });
+      setErrors({ unauthorized: "L'email ou le mot de passe est invalide." });
     } finally {
       setSubmitting(false);
     }

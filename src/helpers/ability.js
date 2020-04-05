@@ -2,7 +2,7 @@ import { Ability, AbilityBuilder } from "@casl/ability";
 
 import { roleById } from "../helpers/constants";
 
-export const subjectName = item => {
+export const subjectName = (item) => {
   if (!item || typeof item === "string") {
     return item;
   }
@@ -11,7 +11,7 @@ export const subjectName = item => {
 
 export const ability = new Ability([], { subjectName });
 
-export const defineRulesFor = user => {
+export const defineRulesFor = (user) => {
   const { can, rules } = AbilityBuilder.extract();
 
   switch (roleById[user.role]) {
@@ -31,8 +31,9 @@ export const defineRulesFor = user => {
       can("add", "Subject", { userId: user.id });
       can("view", "Issues", { userId: user.id });
       can("join", "Issues", { userId: user.id });
-      can("tchat", "Issues", { userId: user.id });
+      can("tchatWithStudent", "Issues", { userId: user.id });
       can("view", "Conversation", { userId: user.id });
+      can("view", "MyIssues", { userId: user.id });
       break;
     case "STUDENT":
       can("view", "Class", { userId: user.id });
@@ -41,8 +42,9 @@ export const defineRulesFor = user => {
       can("add", "Subject", { userId: user.id });
       can("view", "Issues", { userId: user.id });
       can("add", "Issues", { userId: user.id });
-      can("tchat", "Issues", { userId: user.id });
+      can("tchatWithTeacher", "Issues", { userId: user.id });
       can("view", "Conversation", { userId: user.id });
+      can("view", "MyIssues", { userId: user.id });
       break;
     default:
       can("view", "Profil", { userId: user.id });

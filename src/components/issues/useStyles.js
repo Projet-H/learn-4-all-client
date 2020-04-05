@@ -4,13 +4,13 @@ export const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   class: {
     position: "relative",
     width: "100%",
     maxWidth: 1220,
-    padding: 15
+    padding: 15,
   },
   title: {
     color: "#263238",
@@ -18,7 +18,7 @@ export const useStyles = makeStyles({
     fontWeight: 500,
     lineHeight: "28px",
     letterSpacing: "-0.06px",
-    marginTop: 0
+    marginTop: 0,
   },
   subtitle: {
     color: "#546e7a",
@@ -26,21 +26,21 @@ export const useStyles = makeStyles({
     fontWeight: 500,
     lineHeight: "13px",
     letterSpacing: "0.33px",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
   },
   addButton: {
     position: "absolute",
     top: "15px",
-    right: "15px"
+    right: "15px",
   },
   blocNoData: {
     display: "flex",
     justifyContent: "center",
-    marginTop: 125
+    marginTop: 125,
   },
   noData: {
     width: "100%",
-    maxWidth: 600
+    maxWidth: 600,
   },
   element: {
     position: "relative",
@@ -51,7 +51,7 @@ export const useStyles = makeStyles({
     border: "solid 1px #bfbfbfb3",
     padding: 18,
     marginBottom: 5,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   description: {
     position: "relative",
@@ -64,29 +64,37 @@ export const useStyles = makeStyles({
     marginTop: "-20px",
     marginBottom: 25,
     "& > p": {
-      fontWeight: "600"
-    }
+      fontWeight: "600",
+    },
   },
   issueIcon: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 20
+    marginRight: 20,
   },
   issueTitle: {
     display: "flex",
     flexGrow: 1,
     justifyContent: "center",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   issueSubtitle: {
     color: "#a2a2a2",
-    fontSize: 12
+    fontSize: 12,
   },
   expand: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 20
-  }
+    marginLeft: 20,
+  },
+  waiting: {
+    margin: 0,
+    display: "flex",
+    alignItems: "center",
+    color: "orange",
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
 });

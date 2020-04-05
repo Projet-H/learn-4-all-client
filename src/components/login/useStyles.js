@@ -2,12 +2,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import image from "../../assets/images/login.png";
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh"
+    height: "100vh",
   },
   grid: {
-    display: "flex"
+    display: "flex",
   },
   image: {
     backgroundImage: `url(${image})`,
@@ -19,8 +19,8 @@ export const useStyles = makeStyles(theme => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
     "@media (max-width: 959px)": {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   backgroundTitle: {
     height: "100vh",
@@ -28,26 +28,26 @@ export const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   title: {
     color: "#FFF",
     fontSize: 50,
     letterSpacing: 3,
     textTransform: "uppercase",
-    margin: 5
+    margin: 5,
   },
   paper: {
     margin: "auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: 15
+    padding: 15,
   },
   slash: {
     color: "#3f51b5",
     fontSize: 35,
-    paddingRight: 5
+    paddingRight: 5,
   },
   typography: {
     display: "flex",
@@ -56,14 +56,18 @@ export const useStyles = makeStyles(theme => ({
     textTransform: "uppercase",
     paddingTop: 5,
     fontSize: "1.5rem",
-    fontWeight: 700
+    fontWeight: 700,
   },
   form: {
     width: "100%",
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
     padding: 14,
-    margin: "16px 0 16px 0"
-  }
+    margin: "16px 0 16px 0",
+  },
+  error: {
+    color: "red",
+    fontSize: 13,
+  },
 }));

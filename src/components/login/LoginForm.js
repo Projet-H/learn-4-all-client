@@ -7,7 +7,7 @@ import { REGISTER, FORGOTPASSWORD } from "../../helpers/route-constant";
 
 export const initialValues = {
   email: "",
-  password: ""
+  password: "",
 };
 
 export const LoginForm = ({
@@ -18,7 +18,7 @@ export const LoginForm = ({
   errors,
   isValid,
   isSubmitting,
-  handleBlur
+  handleBlur,
 }) => {
   const classes = useStyles();
 
@@ -53,6 +53,11 @@ export const LoginForm = ({
         error={touched.password && errors.password !== undefined}
         helperText={touched.password && errors.password}
       />
+      {errors.unauthorized ? (
+        <span className={classes.error}>{errors.unauthorized}</span>
+      ) : (
+        ""
+      )}
       <Button
         type="submit"
         fullWidth

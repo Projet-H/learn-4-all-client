@@ -15,17 +15,19 @@ export const Register = () => {
 
   const handleSubmit = async (
     { email, firstname, lastname, password, level },
-    { setSubmitting, setFieldError }
+    { setErrors }
   ) => {
     try {
       if (level === "primaire") {
-        setFieldError("level", "test");
+        setErrors({
+          unauthorized: `Learn4all accueil une communauté passant un diplôme en fin d'année. Vous n'êtes pas autorisé à vous inscrire.`,
+        });
       } else {
         const data = await Auth.register({
           lastName: lastname,
           firstName: firstname,
           email,
-          password
+          password,
         });
         const jsonData = await data.json();
 
@@ -34,8 +36,9 @@ export const Register = () => {
         return push(LOGIN);
       }
     } catch (error) {
-      console.log(error);
-      console.log({ setSubmitting, setFieldError });
+      setErrors({
+        error: error.message,
+      });
     }
   };
 
