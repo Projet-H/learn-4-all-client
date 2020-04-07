@@ -42,7 +42,7 @@ export const Degree = () => {
     columns: [
       { title: "Titre", field: "name" },
       { title: "Slug", field: "slug" },
-      { title: "Date de création", field: "createDateTime" },
+      { title: "Date de création", field: "createdAt" },
     ],
     options: {
       sorting: false,
