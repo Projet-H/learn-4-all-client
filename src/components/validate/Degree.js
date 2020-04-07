@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
+import Moment from "react-moment";
 
 import { MTable } from "../common/MTable";
 import { Class } from "../../services/class";
@@ -83,8 +84,17 @@ export const Degree = () => {
       const data = await Class.listInactive();
       const jsonData = await data.json();
 
-      setTotalCount(jsonData.length);
-      setData(jsonData);
+      const jsonDataAddMoment = await Promise.all(
+        jsonData.map(async (e) => {
+          return {
+            ...e,
+            createdAt: <Moment format="DD/MM/YYYY">{e.createDateTime}</Moment>,
+          };
+        })
+      );
+
+      setTotalCount(jsonDataAddMoment.length);
+      setData(jsonDataAddMoment);
     };
     fetchData();
   }, []);
