@@ -15,3 +15,5 @@ export const PROFIL = "/profil";
 export const VALIDATECLASS = "/admin/validate/class";
 export const VALIDATESUBJECT = "/admin/validate/subject";
 export const MYISSUES = "/myissues";
+export const USERS = "/admin/users";
+export const REPORT = "/admin/reported";

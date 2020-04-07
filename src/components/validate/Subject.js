@@ -59,7 +59,7 @@ export const Subject = () => {
       fail("Le sujet n'a pas été validé; Veuillez réessayer ultérieurement.");
       console.log("error", jsonData);
     } else {
-      success("La classe a été validé.");
+      success("La matière a été validée.");
       push("subject");
     }
   };
@@ -71,7 +71,7 @@ export const Subject = () => {
       fail("Le sujet n'a pas été validé; Veuillez réessayer ultérieurement.");
       console.log("error", jsonData);
     } else {
-      success("La classe a été refusé.");
+      success("La matière a été refusée.");
       push("subject");
     }
   };
@@ -91,7 +91,9 @@ export const Subject = () => {
     <div className={classes.root}>
       <div>
         <h2 className={classes.subtitle}>Sous-Catégorie</h2>
-        <h1 className={classes.title}>Gestion des matières</h1>
+        <h1 className={classes.title}>
+          Gestion des matières en cours de traitement
+        </h1>
       </div>
       <div className={classes.table}>
         <MTable

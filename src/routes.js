@@ -17,6 +17,8 @@ import { Profil } from "./components/profil/Profil";
 import { Degree as ValidateDegree } from "./components/validate/Degree";
 import { Subject as ValidateSubject } from "./components/validate/Subject";
 import { MyIssues } from "./components/issues/MyIssues";
+import { UsersIndex as Users } from "./components/users/";
+import { Report } from "./components/issues/Report";
 import {
   NOTFOUND,
   LOGIN,
@@ -32,6 +34,8 @@ import {
   HOME,
   CONVERSATION,
   MYISSUES,
+  USERS,
+  REPORT,
 } from "./helpers/route-constant";
 
 import { withTitleAnimation } from "./helpers/withTitle";
@@ -109,6 +113,14 @@ export const Routes = () => {
   const MyIssuesComponent = withTitleAnimation({
     component: MyIssues,
     title: "Liste des mes problématiques",
+  });
+  const UsersComponent = withTitleAnimation({
+    component: Users,
+    title: "Liste des utilisateurs",
+  });
+  const ReportComponent = withTitleAnimation({
+    component: Report,
+    title: "Signalements",
   });
 
   return (
@@ -211,6 +223,24 @@ export const Routes = () => {
         component={(props) => (
           <Can I="view" a="MyIssues">
             {() => <MyIssuesComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={USERS}
+        component={(props) => (
+          <Can I="view" a="Users">
+            {() => <UsersComponent {...props} />}
+          </Can>
+        )}
+      />
+      <Route
+        exact
+        path={REPORT}
+        component={(props) => (
+          <Can I="view" a="Report">
+            {() => <ReportComponent {...props} />}
           </Can>
         )}
       />

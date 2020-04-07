@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
+import Moment from "react-moment";
 
 import { MTable } from "../common/MTable";
-import { Class } from "../../services/class";
+import { Issues } from "../../services/issues";
 import { success, fail } from "../common/Toast";
 
 const useStyles = makeStyles({
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Degree = () => {
+export const Report = () => {
   const classes = useStyles();
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState([]);
@@ -39,9 +40,11 @@ export const Degree = () => {
 
   const optionTable = {
     columns: [
-      { title: "Titre", field: "name" },
-      { title: "Slug", field: "slug" },
-      { title: "Date de création", field: "createDateTime" },
+      { title: "Email", field: "email" },
+      { title: "Nom", field: "lastName" },
+      { title: "Prénom", field: "firstName" },
+      { title: "Rôle", field: "roleName" },
+      { title: "Date de création", field: "createdAt" },
     ],
     options: {
       sorting: false,
@@ -52,39 +55,50 @@ export const Degree = () => {
     },
   };
 
-  const active = async (rowData) => {
-    const data = await Class.active(rowData.id);
-    const jsonData = await data.json();
-    if (data.status !== 200) {
-      fail("La classe n'a pas été validé; Veuillez réessayer ultérieurement.");
-      console.log("error", jsonData);
-    } else {
-      success("La classe a été validée.");
-      push("class");
-    }
-  };
-
-  const remove = async (rowData) => {
-    const data = await Class.remove(rowData.id);
+  const reject = async (rowData) => {
+    const data = await Issues.rejectReport(rowData.id);
     const jsonData = await data.json();
     if (data.status !== 200) {
       fail(
-        "La classe n'a pas été supprimé; Veuillez réessayer ultérieurement."
+        "Le signalement n'a pas été rejeté; Veuillez réessayer ultérieurement."
       );
       console.log("error", jsonData);
     } else {
-      success("La classe a été refusée.");
-      push("class");
+      success("Le signalement a été rejeté.");
+      push("report");
+    }
+  };
+
+  const accept = async (rowData) => {
+    const data = await Issues.acceptReport(rowData.id);
+    const jsonData = await data.json();
+    if (data.status !== 200) {
+      fail(
+        "Le signalement n'a pas été accepté; Veuillez réessayer ultérieurement."
+      );
+      console.log("error", jsonData);
+    } else {
+      success("Le signalement a été accepté.");
+      push("report");
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await Class.listInactive();
+      const data = await Issues.listReport();
       const jsonData = await data.json();
 
-      setTotalCount(jsonData.length);
-      setData(jsonData);
+      const jsonDataAddMoment = await Promise.all(
+        jsonData.map(async (e) => {
+          return {
+            ...e,
+            createdAt: <Moment format="DD/MM/YYYY">{e.createDateTime}</Moment>,
+          };
+        })
+      );
+
+      setTotalCount(jsonDataAddMoment.length);
+      setData(jsonDataAddMoment);
     };
     fetchData();
   }, []);
@@ -92,10 +106,8 @@ export const Degree = () => {
   return (
     <div className={classes.root}>
       <div>
-        <h2 className={classes.subtitle}>Catégorie</h2>
-        <h1 className={classes.title}>
-          Gestion des classes en cours de traitement
-        </h1>
+        <h2 className={classes.subtitle}>Signalements</h2>
+        <h1 className={classes.title}>Liste des messages signalés</h1>
       </div>
       <div className={classes.table}>
         <MTable
@@ -104,14 +116,14 @@ export const Degree = () => {
           totalCount={totalCount}
           actions={[
             {
-              icon: "check",
-              tooltip: "Accepter la création de la classe",
-              onClick: (event, rowData) => active(rowData),
+              icon: "clear",
+              tooltip: "Rejeter le signalement",
+              onClick: (event, rowData) => reject(rowData),
             },
             {
               icon: "delete",
-              tooltip: "Refuser la création de la classe",
-              onClick: (event, rowData) => remove(rowData),
+              tooltip: "Supprimer le message",
+              onClick: (event, rowData) => accept(rowData),
             },
           ]}
         ></MTable>

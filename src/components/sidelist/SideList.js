@@ -8,6 +8,8 @@ import {
   Gavel as GavelIcon,
   BorderClear as BorderClearIcon,
   MyLocation as MyLocationIcon,
+  PeopleAlt as PeopleAltIcon,
+  ReportProblem as ReportProblemIcon,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -19,6 +21,8 @@ import {
   VALIDATECLASS,
   VALIDATESUBJECT,
   MYISSUES,
+  USERS,
+  REPORT,
 } from "../../helpers/route-constant";
 import { Links } from "../common/Links";
 import { SideListProfile } from "./SideListProfile";
@@ -106,6 +110,24 @@ export const SideList = () => {
               route={MYISSUES}
               text="Mes problématiques"
               Icon={MyLocationIcon}
+            ></Links>
+          )}
+        </Can>
+        <Can I="view" a="Users">
+          {() => (
+            <Links
+              route={USERS}
+              text="Utilisateurs"
+              Icon={PeopleAltIcon}
+            ></Links>
+          )}
+        </Can>
+        <Can I="view" a="Report">
+          {() => (
+            <Links
+              route={REPORT}
+              text="Signalements"
+              Icon={ReportProblemIcon}
             ></Links>
           )}
         </Can>

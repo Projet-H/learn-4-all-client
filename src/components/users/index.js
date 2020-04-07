@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
+import Moment from "react-moment";
 
 import { MTable } from "../common/MTable";
-import { Class } from "../../services/class";
-import { success, fail } from "../common/Toast";
+import { Users } from "../../services/users";
+import { roleById, role } from "../../helpers/constants";
+import { success, fail, warning } from "../common/Toast";
 
 const useStyles = makeStyles({
   root: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Degree = () => {
+export const UsersIndex = () => {
   const classes = useStyles();
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState([]);
@@ -39,9 +41,11 @@ export const Degree = () => {
 
   const optionTable = {
     columns: [
-      { title: "Titre", field: "name" },
-      { title: "Slug", field: "slug" },
-      { title: "Date de création", field: "createDateTime" },
+      { title: "Email", field: "email" },
+      { title: "Nom", field: "lastName" },
+      { title: "Prénom", field: "firstName" },
+      { title: "Rôle", field: "roleName" },
+      { title: "Date de création", field: "createdAt" },
     ],
     options: {
       sorting: false,
@@ -52,39 +56,41 @@ export const Degree = () => {
     },
   };
 
-  const active = async (rowData) => {
-    const data = await Class.active(rowData.id);
-    const jsonData = await data.json();
-    if (data.status !== 200) {
-      fail("La classe n'a pas été validé; Veuillez réessayer ultérieurement.");
-      console.log("error", jsonData);
-    } else {
-      success("La classe a été validée.");
-      push("class");
-    }
-  };
-
   const remove = async (rowData) => {
-    const data = await Class.remove(rowData.id);
-    const jsonData = await data.json();
-    if (data.status !== 200) {
-      fail(
-        "La classe n'a pas été supprimé; Veuillez réessayer ultérieurement."
-      );
-      console.log("error", jsonData);
+    if (roleById[rowData.role] !== role.ADMIN) {
+      const data = await Users.remove(rowData.id);
+      const jsonData = await data.json();
+      if (data.status !== 200) {
+        fail(
+          "L'utilisateur n'a pas été supprimé; Veuillez réessayer ultérieurement."
+        );
+        console.log("error", jsonData);
+      } else {
+        success("L'utilisteur a été supprimé.");
+        push("users");
+      }
     } else {
-      success("La classe a été refusée.");
-      push("class");
+      warning("Impossible de supprimer un administrateur");
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await Class.listInactive();
+      const data = await Users.list();
       const jsonData = await data.json();
 
-      setTotalCount(jsonData.length);
-      setData(jsonData);
+      const jsonDataAddMoment = await Promise.all(
+        jsonData.map(async (e) => {
+          return {
+            ...e,
+            createdAt: <Moment format="DD/MM/YYYY">{e.createDateTime}</Moment>,
+            roleName: roleById[e.role],
+          };
+        })
+      );
+
+      setTotalCount(jsonDataAddMoment.length);
+      setData(jsonDataAddMoment);
     };
     fetchData();
   }, []);
@@ -92,10 +98,8 @@ export const Degree = () => {
   return (
     <div className={classes.root}>
       <div>
-        <h2 className={classes.subtitle}>Catégorie</h2>
-        <h1 className={classes.title}>
-          Gestion des classes en cours de traitement
-        </h1>
+        <h2 className={classes.subtitle}>Utilisateurs</h2>
+        <h1 className={classes.title}>Gestion des utilisateurs</h1>
       </div>
       <div className={classes.table}>
         <MTable
@@ -104,13 +108,8 @@ export const Degree = () => {
           totalCount={totalCount}
           actions={[
             {
-              icon: "check",
-              tooltip: "Accepter la création de la classe",
-              onClick: (event, rowData) => active(rowData),
-            },
-            {
               icon: "delete",
-              tooltip: "Refuser la création de la classe",
+              tooltip: "Supprimer l'utilisateur",
               onClick: (event, rowData) => remove(rowData),
             },
           ]}

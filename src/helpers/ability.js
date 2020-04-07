@@ -23,6 +23,8 @@ export const defineRulesFor = (user) => {
       can("view", "Issues", { userId: user.id });
       can("validate", "Degree", { userId: user.id });
       can("validate", "Subject", { userId: user.id });
+      can("view", "Users", { userId: user.id });
+      can("view", "Report", { userId: user.id });
       break;
     case "TEACHER":
       can("view", "Class", { userId: user.id });
