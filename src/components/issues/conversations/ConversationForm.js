@@ -4,7 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import { useStyles } from "./useStyles";
 
 export const initialValues = {
-  message: ""
+  message: "",
 };
 
 export const ConversationForm = ({
@@ -12,7 +12,7 @@ export const ConversationForm = ({
   handleChange,
   values,
   isValid,
-  handleBlur
+  handleBlur,
 }) => {
   const classes = useStyles();
 
@@ -25,6 +25,7 @@ export const ConversationForm = ({
         id="message"
         label="Écrivez un message..."
         name="message"
+        inputProps={{ maxLength: 1000 }}
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.message}
